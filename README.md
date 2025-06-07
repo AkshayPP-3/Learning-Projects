@@ -5,7 +5,7 @@ This repository contains multiple small projects. Each project is in its own fol
 | Project Name         | Project Page                                                                 | Source Code                                                                                   |
 |---------------------|------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
 | blackjack           | [View](https://akshaypp-3.github.io/Learning-Projects/blackjack)              | [Source](https://github.com/akshaypp-3/Learning-Projects/tree/main/blackjack)                 |
-| curriculum-vitae-CV | [View](curriculum-vitae-cv-seven.vercel.app)    | [Source](https://github.com/akshaypp-3/Learning-Projects/tree/main/curriculum-vitae-CV)       |
+| curriculum-vitae-CV | [View](https://curriculum-vitae-cv-seven.vercel.app)                          | [Source](https://github.com/akshaypp-3/Learning-Projects/tree/main/curriculum-vitae-CV)       |
 | login-page          | [View](https://akshaypp-3.github.io/Learning-Projects/login-page)             | [Source](https://github.com/akshaypp-3/Learning-Projects/tree/main/login-page)                |
 | passenger-count     | [View](https://akshaypp-3.github.io/Learning-Projects/passenger-count)        | [Source](https://github.com/akshaypp-3/Learning-Projects/tree/main/passenger-count)           |
 | portfolio-1         | [View](https://akshaypp-3.github.io/Learning-Projects/portfolio-1)            | [Source](https://github.com/akshaypp-3/Learning-Projects/tree/main/portfolio-1)               |
