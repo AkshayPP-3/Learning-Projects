@@ -1,0 +1,221 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url('bg.jpg');
+    color: #333;
+    line-height: 1.6;
+  }
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #060641;
+    padding: 1rem 2rem;
+  }
+  .brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+  }
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+  }
+  .nav-links a {
+    color: rgb(138, 138, 185);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover {
+    color:#08fa31;
+  }
+  
+  .home {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+  }
+  .profile-pic {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #fff;
+    margin-bottom: 1rem;
+  }
+  .home h1 {
+    font-size: 2.5rem;
+    margin-bottom: .5rem;
+  }
+  .home p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+  }
+  .btn1{
+    display: inline-block;
+    background: #1a0dd1;
+    color: #fff;
+    padding: .75rem 1.5rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s;
+  }
+  .btn1:hover {
+    background: #063881;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(4, 238, 35, 0.938);
+  }
+
+  main section {
+    max-width: 1000px;
+    margin:30px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+  main h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #1e1e2f;
+  }
+  
+  .about p + p {
+    margin-top: .75rem;
+  }
+  .social-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  .social-links a {
+    color: #667eea;
+    font-weight: 500;
+  }
+  .social-links a:hover {
+    text-decoration: underline;
+    color: #440980d5;
+  }
+  
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .project-card {
+    padding: 1.5rem;
+    border-radius: 8px;
+    background: #fafafb;
+    border: 1px solid #e2e8f0;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+  .project-card h3 {
+    margin-bottom: .5rem;
+    color: #764ba2;
+  }
+  .project-card p + p {
+    margin-top: .5rem;
+    font-size: .95rem;
+  }
+  .project-card a {
+    display: inline-block;
+    margin-top: 1rem;
+    margin-right: .5rem;
+    padding: .5rem 1rem;
+    background: #667eea;
+    color: #fff;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: .9rem;
+    transition: background 0.3s;
+  }
+  .project-card a:hover {
+    background: #5a67d8;
+  }
+  
+  .skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin-top: 1rem;
+  }
+  .skill-list span {
+    background: #e0eaff;
+    color: #1e1e2f;
+    padding: .5rem .75rem;
+    border-radius: 4px;
+    font-size: .9rem;
+    font-weight: 500;
+  }
+  
+  .education ul {
+    list-style: disc inside;
+    margin-top: .75rem;
+  }
+  .education p + ul {
+    margin-top: .5rem;
+  }
+.contact-form {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+.contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    padding: .75rem;
+    border: 1px solid #cbd5e0;
+    border-radius: 4px;
+    font-size: .95rem;
+  }
+  .btn2{
+    width: max-content;
+    display: inline-block;
+    background: #1a0dd1;
+    color: #fff;
+    padding: .75rem 1.5rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s;
+  }
+  .btn2:hover {
+    background: #063881;
+    border:2px solid rgb(8, 233, 8);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(4, 238, 35, 0.938);
+  }
+  
+  footer {
+    text-align: center;
+    padding: 1.5rem 0;
+    background: #1e1e2f;
+    color: #cfd8dc;
+    font-size: .9rem;
+  }
+  
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .nav-links {
+      flex-direction: column;
+      width: 100%;
+    }
+  }
