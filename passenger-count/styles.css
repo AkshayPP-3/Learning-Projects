@@ -1,0 +1,53 @@
+#counter,#heading,#pre{
+    color: white;
+    text-align: center;
+    font-size: 50px;
+}
+
+body{
+    background-image: url('train.jpg');
+    background-size: cover;
+    
+    background-repeat: no repeat;
+
+}
+.center{
+    background-color: brown;
+    color: black; 
+    font-size: 25px;
+    padding: 5px;
+    position: relative;
+    border: 7px solid rgb(235, 240, 236);
+    margin: 0;
+    top: 50%;
+    left: 20%;
+    width: 300px;
+
+}
+.center:hover{
+    cursor: pointer;
+    border: 5px solid lightseagreen;
+    border-radius: 30px 30px;         
+}
+.save{
+    background-color: green;
+    color: black; 
+    font-size: 25px;
+    padding: 5px;
+    position: relative;
+    border: 7px solid rgb(235, 240, 236);
+    width: 250px;
+    left:40%;
+}
+
+.save:hover{
+    cursor: pointer;
+    border: 5px solid lightseagreen;
+    border-radius: 30px 30px;         
+}
+#pre{
+    color:rgb(247, 239, 239);
+    font-size: 50px;
+    text-align: left;
+    
+}
