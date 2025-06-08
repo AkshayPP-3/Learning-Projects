@@ -8,13 +8,15 @@ A simple, fun, and interactive web-based Blackjack game built with HTML, CSS, an
 
 👉 [**Live Demo**](https://akshaypp-3.github.io/Learning-Projects/blackjack)
 
-<!-- Card images row -->
+<!-- Card images row (markdown syntax for GitHub compatibility) -->
 <p align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Playing_card_spade_A.svg" width="60"/>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Playing_card_heart_K.svg" width="60"/>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Playing_card_club_Q.svg" width="60"/>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/9/94/Playing_card_diamond_J.svg" width="60"/>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Playing_card_spade_10.svg" width="60"/>
+
+![Ace of Spades](https://upload.wikimedia.org/wikipedia/commons/5/57/Playing_card_spade_A.svg)
+![King of Hearts](https://upload.wikimedia.org/wikipedia/commons/d/d3/Playing_card_heart_K.svg)
+![Queen of Clubs](https://upload.wikimedia.org/wikipedia/commons/2/22/Playing_card_club_Q.svg)
+![Jack of Diamonds](https://upload.wikimedia.org/wikipedia/commons/9/94/Playing_card_diamond_J.svg)
+![10 of Spades](https://upload.wikimedia.org/wikipedia/commons/2/25/Playing_card_spade_10.svg)
+
 </p>
 
 ---
@@ -37,7 +39,7 @@ A simple, fun, and interactive web-based Blackjack game built with HTML, CSS, an
 
 ## 🖼️ Screenshots
 
-<img src="https://akshaypp-3.github.io/Learning-Projects/blackjack/preview.png" alt="Blackjack Table Screenshot" width="400" style="border-radius: 10px; box-shadow: 0 4px 12px #0002; margin: 1em 0;">
+![Blackjack Table Screenshot](https://akshaypp-3.github.io/Learning-Projects/blackjack/preview.png)
 
 ---
 
