@@ -35,9 +35,7 @@ A beautiful, modern login page featuring gradients, icons, and a stylish backgro
 
 ## 📂 Source Code
 All files are in this folder:
-- `index.html`
-- `styles.css`
-- `3.jpg` (background image)
+- [login-page/](./)
 
 ---
 
