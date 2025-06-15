@@ -34,8 +34,8 @@ function HomePage() {
         <source src={bgVideo} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-      <div className="main" style={{ position: 'relative', zIndex: 1, height: '100vh', width: '100vw', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div className="home-page">
+      <div className="main" style={{ position: 'relative', zIndex: 1, height: '100vh', width: '100vw', display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
+        <div className="home-page" style={{ display: 'flex', alignItems: 'center', height: '100vh', marginLeft: '40px' }}>
           <AnimatedPlayButton />
         </div>
       </div>
