@@ -1,0 +1,71 @@
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: linear-gradient(135deg, #232526 0%, #54e6c1 100%);
+  text-decoration: none;
+}
+
+.loader-container {
+  min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader {
+  display: flex;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  transform: rotate(165deg);
+}
+
+.loader-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  transform: translate(-50%, -50%);
+  background: rgb(54, 215, 183);
+}
+
+.loader-dot.before {
+  animation: hashLoaderBeforeAnim 2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
+}
+
+.loader-dot.after {
+  animation: hashLoaderAfterAnim 2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+}
+
+@keyframes hashLoaderBeforeAnim {
+  0% { box-shadow: 26px 0, -26px 0; }
+  35% { box-shadow: 0 0, 0 0; }
+  70% { box-shadow: 0 0, 0 0; }
+  100% { box-shadow: 26px 0, -26px 0; }
+}
+
+@keyframes hashLoaderAfterAnim {
+  0% { box-shadow: 0 26px, 0 -26px; }
+  35% { box-shadow: 0 0, 0 0; }
+  70% { box-shadow: 0 0, 0 0; }
+  100% { box-shadow: 0 26px, 0 -26px; }
+}
+
+.click-anywhere {
+  margin-top: 5px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+  font-size: 1.5rem;
+}
+h1{
+  color: #fff;
+}
