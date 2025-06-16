@@ -35,7 +35,7 @@ function HomePage() {
         Your browser does not support the video tag.
       </video>
       <div className="main" style={{ position: 'relative', zIndex: 1, height: '100vh', width: '100vw', display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
-        <div className="home-page" style={{ display: 'flex', alignItems: 'center', height: '100vh', marginLeft: '40px' }}>
+        <div className="home-page" style={{ display: 'flex', alignItems: 'center', height: '100vh', marginLeft: '150px' }}>
           <AnimatedPlayButton />
         </div>
       </div>
