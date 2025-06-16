@@ -2,6 +2,7 @@ import { HashLoader } from 'react-spinners';
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import HomePage from './HomePage';
 import './App.css';
+import bgMusic from './assets/Audio/guts.mp3';
 
 function LoaderScreen() {
   const navigate = useNavigate();
@@ -15,12 +16,15 @@ function LoaderScreen() {
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<LoaderScreen />} />
-        <Route path="/home" element={<HomePage />} />
-      </Routes>
-    </BrowserRouter>
+    <>
+      <audio src={bgMusic} autoPlay loop />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LoaderScreen />} />
+          <Route path="/home" element={<HomePage />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
