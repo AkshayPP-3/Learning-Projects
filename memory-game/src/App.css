@@ -69,11 +69,14 @@ body {
 h1{
   color: #fff;
 }
-
+.animated-play-btn {
+  box-sizing: border-box;
+  padding: 0 60px 0 60px;
+}
 .animated-play-btn {
   position: relative;
   display: inline-block;
-  padding: 0 40px;
+  padding: 0 56px 0 48px; 
   height: 60px;
   font-size: 2rem;
   font-weight: bold;
@@ -86,7 +89,7 @@ h1{
   z-index: 1;
   box-shadow: 0 2px 20px rgba(0,0,0,0.3);
   transition: background 0.3s, color 0.3s, box-shadow 0.3s;
-  margin-left: 40px;
+  margin-left: 120px;
 }
 .animated-play-btn span {
   position: relative;
@@ -118,7 +121,7 @@ h1{
 .animated-play-btn:hover {
   background: #fff;
   color: #111;
-  box-shadow: 0 0 30px #fff, 0 0 60px #fff;
+  box-shadow: 0 0 30px #fff, 0 0 40px #fff;
 }
 .animated-play-btn:active {
   background: #222;

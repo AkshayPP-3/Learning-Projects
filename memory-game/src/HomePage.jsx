@@ -43,7 +43,7 @@ function HomePage() {
   );
 }
 
-// Animated black and white Play button
+
 const AnimatedPlayButton = () => (
   <button className="animated-play-btn">
     <span>Play</span>
@@ -54,7 +54,3 @@ const AnimatedPlayButton = () => (
 );
 
 export default HomePage;
-
-git reflog expire --expire=now --all
-git gc --prune=now --aggressive
-git push origin main --force
