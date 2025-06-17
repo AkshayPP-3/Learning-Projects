@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import heroBackground from './assets/Background/hero_background.mp4';
 import onepieceImg from './assets/OnePiece/onepiece1.jpg';
-import mhaImg from './assets/Mha/mha1.jpg';
-import bleachImg from './assets/Bleach/bleach1.jpg';
+import dekuVideo from './assets/Background/deku.mp4';
+import ichigoVideo from './assets/Background/ichigo.mp4';
 import luffyVideo from './assets/Background/luffy.mp4';
 
 const animeCards = [
@@ -13,14 +13,14 @@ const animeCards = [
     alt: 'One Piece',
   },
   {
-    title: 'MY HERO ACADEMIA',
-    img: mhaImg,
-    alt: 'My Hero Academia',
+    title: 'MHA',
+    video: dekuVideo,
+    alt: 'Deku',
   },
   {
     title: 'BLEACH',
-    img: bleachImg,
-    alt: 'Bleach',
+    video: ichigoVideo,
+    alt: 'Ichigo',
   },
 ];
 
