@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import heroBackground from './assets/Background/hero_background.mp4';
 import onepieceImg from './assets/OnePiece/onepiece1.jpg';
 import dekuVideo from './assets/Background/deku.mp4';
@@ -64,6 +65,7 @@ const cardWidth = 200;
 const cardHeight = 280;
 
 const HeroPage = () => {
+  const navigate = useNavigate();
   return (
     <div
       style={{
@@ -141,7 +143,13 @@ const HeroPage = () => {
                 }}
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
-                onClick={() => alert(card.title + ' button clicked!')}
+                onClick={() => {
+                  if (card.title === 'ONE PIECE') {
+                    navigate('/onepiece');
+                  } else {
+                    alert(card.title + ' button clicked!');
+                  }
+                }}
               >
                 <div
                   ref={shineRef}
