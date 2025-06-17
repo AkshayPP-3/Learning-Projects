@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import './App.css';
 import bgVideo from './assets/Background/animated-video-for-background.mp4';
+import { useNavigate } from 'react-router-dom';
 
 function HomePage() {
   useEffect(() => {
@@ -43,10 +44,11 @@ function HomePage() {
   );
 }
 
-
-const AnimatedPlayButton = () => (
-  <a className="cta" href="#">
-    <span>PLAY</span>
+function AnimatedPlayButton() {
+  const navigate = useNavigate();
+  return (
+    <button className="cta" onClick={() => navigate('/heropage')}>
+       <span>PLAY</span>
     <span>
       <svg width="66px" height="43px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
         <g id="arrow" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
@@ -56,7 +58,8 @@ const AnimatedPlayButton = () => (
         </g>
       </svg>
     </span>
-  </a>
-);
+    </button>
+  );
+}
 
 export default HomePage;

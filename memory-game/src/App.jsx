@@ -1,6 +1,7 @@
 import { HashLoader } from 'react-spinners';
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import HomePage from './HomePage';
+import HeroPage from './HeroPage';
 import './App.css';
 import bgMusic from './assets/Audio/guts.mp3';
 
@@ -22,6 +23,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LoaderScreen />} />
           <Route path="/home" element={<HomePage />} />
+          <Route path="/heropage" element={<HeroPage />} />
         </Routes>
       </BrowserRouter>
     </>
