@@ -146,8 +146,10 @@ const HeroPage = () => {
                 onClick={() => {
                   if (card.title === 'ONE PIECE') {
                     navigate('/onepiece');
-                  } else {
-                    alert(card.title + ' button clicked!');
+                  } else if (card.title === 'MHA') {
+                    navigate('/mhagame');
+                  } else if (card.title === 'BLEACH') {
+                    navigate('/bleachgame');
                   }
                 }}
               >

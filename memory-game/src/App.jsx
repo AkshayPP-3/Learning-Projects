@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import HomePage from './HomePage';
 import HeroPage from './HeroPage';
 import OnePieceGame from './OnePieceGame';
+import MhaGame from './MhaGame';
+import BleachGame from './BleachGame';
 import './App.css';
 import bgMusic from './assets/Audio/guts.mp3';
 
@@ -26,6 +28,8 @@ function App() {
           <Route path="/home" element={<HomePage />} />
           <Route path="/heropage" element={<HeroPage />} />
           <Route path="/onepiece" element={<OnePieceGame />} />
+          <Route path="/mhagame" element={<MhaGame />} />
+          <Route path="/bleachgame" element={<BleachGame />} />
         </Routes>
       </BrowserRouter>
     </>
