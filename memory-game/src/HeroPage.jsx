@@ -14,7 +14,7 @@ const animeCards = [
     alt: 'One Piece',
   },
   {
-    title: 'MHA',
+    title: 'MY HERO ACADEMIA',
     video: dekuVideo,
     alt: 'Deku',
   },
