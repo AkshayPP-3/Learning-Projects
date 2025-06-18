@@ -43,12 +43,11 @@ const OnePieceGame = () => {
     if (isFlipping) return;
     setIsFlipping(true);
     // Flip all cards to back
-    setCards((prev) => prev.map(card => ({ ...card, flipped: true })));
+    setCards(prev => prev.map(card => ({ ...card, flipped: true })));
     setTimeout(() => {
-      // Shuffle and flip all cards face up again
-      setCards(shuffleArray(cards.map(card => ({ ...card, flipped: false }))));
+      setCards(prev => shuffleArray(prev.map(card => ({ ...card, flipped: false }))));
       setIsFlipping(false);
-    }, 1200); // 1.2 seconds for a more visible flip
+    }, 1000); // 1 second for flip effect
   };
 
   return (
@@ -151,7 +150,6 @@ const OnePieceGame = () => {
                       position: 'absolute',
                       width: '100%',
                       height: '100%',
-                      backfaceVisibility: 'hidden',
                       transform: 'rotateY(180deg)',
                       background: CARD_BACK_COLOR,
                       display: 'flex',
