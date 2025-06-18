@@ -239,7 +239,7 @@ h1{
   }
 }
 
-/* Responsive styles for HeroPage only */
+/* Responsive styles for HeroPage */
 @media (max-width: 900px) {
   .hero-flex {
     flex-direction: column !important;
@@ -274,7 +274,7 @@ h1{
   }
 }
 
-/* Perfect aspect ratio and fit for mp4 and images on HeroPage cards */
+
 .hero-card video,
 .hero-card img {
   width: 100%;
@@ -305,4 +305,39 @@ h1{
     min-height: 80px;
     aspect-ratio: 16/9;
   }
+}
+
+
+.flip-card {
+  cursor: pointer;
+  user-select: none;
+}
+
+.flip-card-inner {
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 16px;
+}
+
+.flip-card-front {
+  background: #ffe066;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #222;
+  font-size: 24px;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+  overflow: hidden;
 }

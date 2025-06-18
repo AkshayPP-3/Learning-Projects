@@ -13,9 +13,43 @@ const levels = [
 
 const onePieceImages = [onepiece1, onepiece2, onepiece3, onepiece4, onepiece5];
 
+// Fisher-Yates shuffle
+function shuffleArray(array) {
+  const arr = array.slice();
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+const CARD_BACK_COLOR = '#ffe066'; // One Piece theme color for card back
+
 const OnePieceGame = () => {
   const [selectedLevel, setSelectedLevel] = useState(null);
   const [hoveredLevel, setHoveredLevel] = useState(null);
+  const [score] = useState(0); // Score state, default 0
+  const [cards, setCards] = useState(onePieceImages.map((img, i) => ({ img, flipped: false, id: i })));
+  const [isFlipping, setIsFlipping] = useState(false);
+
+  // Reset cards when level changes
+  React.useEffect(() => {
+    if (selectedLevel === 'easy') {
+      setCards(onePieceImages.map((img, i) => ({ img, flipped: false, id: i })));
+    }
+  }, [selectedLevel]);
+
+  const handleCardClick = () => {
+    if (isFlipping) return;
+    setIsFlipping(true);
+    // Flip all cards to back
+    setCards((prev) => prev.map(card => ({ ...card, flipped: true })));
+    setTimeout(() => {
+      // Shuffle and flip all cards face up again
+      setCards(shuffleArray(cards.map(card => ({ ...card, flipped: false }))));
+      setIsFlipping(false);
+    }, 1200); // 1.2 seconds for a more visible flip
+  };
 
   return (
     <div style={{ minHeight: '100vh', minWidth: '100vw', background: '#2DC7FF', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
@@ -65,11 +99,68 @@ const OnePieceGame = () => {
             Selected Level: {levels.find(l => l.value === selectedLevel).label}
           </div>
         )}
+        {/* Score and Total Cards display for Easy level */}
         {selectedLevel === 'easy' && (
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '36px', flexWrap: 'wrap', marginTop: 24 }}>
-            {onePieceImages.map((src, idx) => (
-              <div key={idx} style={{ width: 160, height: 220, background: '#fff', borderRadius: 16, boxShadow: '0 4px 16px #0006', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, color: '#222', fontSize: 24, overflow: 'hidden' }}>
-                <img src={src} alt={`One Piece ${idx+1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          <div style={{ marginTop: '10px', marginBottom: '10px', color: '#fff', fontWeight: 500, fontSize: '1.2rem', display: 'flex', justifyContent: 'center', gap: '32px' }}>
+            <div>Current Score: {score}</div>
+            <div>Total Cards: {onePieceImages.length}</div>
+          </div>
+        )}
+        {selectedLevel === 'easy' && (
+          <div
+            style={{ display: 'flex', justifyContent: 'center', gap: '36px', flexWrap: 'wrap', marginTop: 24 }}
+            onClick={handleCardClick}
+          >
+            {cards.map((card, idx) => (
+              <div
+                key={card.id}
+                className="flip-card"
+                style={{ width: 200, height: 280, perspective: 800, borderRadius: 16, boxShadow: '0 4px 16px #0006', margin: 0 }}
+                onClick={e => { e.stopPropagation(); handleCardClick(); }}
+              >
+                <div
+                  className="flip-card-inner"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    borderRadius: 16,
+                    transition: 'transform 0.5s',
+                    transformStyle: 'preserve-3d',
+                    position: 'relative',
+                    transform: card.flipped ? 'rotateY(180deg)' : 'none',
+                  }}
+                >
+                  {/* Card Front (Image) */}
+                  <div
+                    className="flip-card-front"
+                    style={{
+                      position: 'absolute',
+                      width: '100%',
+                      height: '100%',
+                      backfaceVisibility: 'hidden',
+                      borderRadius: 16,
+                      overflow: 'hidden',
+                    }}
+                  >
+                    <img src={card.img} alt={`One Piece ${card.id + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  </div>
+                  {/* Card Back (just yellow color) */}
+                  <div
+                    className="flip-card-back"
+                    style={{
+                      position: 'absolute',
+                      width: '100%',
+                      height: '100%',
+                      backfaceVisibility: 'hidden',
+                      transform: 'rotateY(180deg)',
+                      background: CARD_BACK_COLOR,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      borderRadius: 16,
+                    }}
+                  ></div>
+                </div>
               </div>
             ))}
           </div>
