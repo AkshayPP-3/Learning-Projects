@@ -238,3 +238,71 @@ h1{
     padding: 0.5rem 1rem;
   }
 }
+
+/* Responsive styles for HeroPage only */
+@media (max-width: 900px) {
+  .hero-flex {
+    flex-direction: column !important;
+    gap: 24px !important;
+  }
+  .hero-card {
+    width: 70vw !important;
+    max-width: 320px !important;
+    height: 45vw !important;
+    max-height: 340px !important;
+    min-width: 180px !important;
+    min-height: 220px !important;
+  }
+  .hero-title {
+    font-size: 2rem !important;
+  }
+}
+@media (max-width: 600px) {
+  .hero-flex {
+    gap: 16px !important;
+  }
+  .hero-card {
+    width: 90vw !important;
+    max-width: 98vw !important;
+    height: 55vw !important;
+    max-height: 220px !important;
+    min-width: 120px !important;
+    min-height: 160px !important;
+  }
+  .hero-title {
+    font-size: 1.2rem !important;
+  }
+}
+
+/* Perfect aspect ratio and fit for mp4 and images on HeroPage cards */
+.hero-card video,
+.hero-card img {
+  width: 100%;
+  height: 70%;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+  margin-bottom: 0;
+  z-index: 2;
+  background: #111;
+  aspect-ratio: 16/9;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .hero-card video,
+  .hero-card img {
+    height: 60vw;
+    max-height: 220px;
+    min-height: 120px;
+    aspect-ratio: 16/9;
+  }
+}
+@media (max-width: 600px) {
+  .hero-card video,
+  .hero-card img {
+    height: 40vw;
+    max-height: 140px;
+    min-height: 80px;
+    aspect-ratio: 16/9;
+  }
+}

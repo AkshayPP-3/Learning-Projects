@@ -99,7 +99,7 @@ const HeroPage = () => {
         Your browser does not support the video tag.
       </video>
       <div style={{ position: 'relative', zIndex: 1, height: '100vh', width: '100vw', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
-        <h1 style={{
+        <h1 className="hero-title" style={{
           color: '#fff',
           textShadow: '0 2px 12px #000, 0 0 8px #00ffe7',
           marginBottom: '40px',
@@ -115,13 +115,14 @@ const HeroPage = () => {
         }}>
           Choose one anime
         </h1>
-        <div style={{ display: 'flex', gap: '32px' }}>
+        <div className="hero-flex" style={{ display: 'flex', gap: '32px' }}>
           {animeCards.map((card) => {
             const { ref, shineRef, handleMouseMove, handleMouseLeave } = use3DHoverFollowCursor();
             return (
               <button
                 key={card.title}
                 ref={ref}
+                className="hero-card"
                 style={{
                   background: 'rgba(0,0,0,0.7)',
                   borderRadius: '16px',
@@ -146,7 +147,7 @@ const HeroPage = () => {
                 onClick={() => {
                   if (card.title === 'ONE PIECE') {
                     navigate('/onepiece');
-                  } else if (card.title === 'MHA') {
+                  } else if (card.title === 'MY HERO ACADEMIA') {
                     navigate('/mhagame');
                   } else if (card.title === 'BLEACH') {
                     navigate('/bleachgame');

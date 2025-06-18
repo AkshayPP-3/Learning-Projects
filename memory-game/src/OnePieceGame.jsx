@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
+import onepiece1 from './assets/OnePiece/onepiece1.jpg';
+import onepiece2 from './assets/OnePiece/onepiece2.jpg';
+import onepiece3 from './assets/OnePiece/onepiece3.jpg';
+import onepiece4 from './assets/OnePiece/onepiece4.jpg';
+import onepiece5 from './assets/OnePiece/onepiece5.jpg';
 
 const levels = [
   { label: 'Easy', value: 'easy' },
   { label: 'Medium', value: 'medium' },
   { label: 'Hard', value: 'hard' },
 ];
+
+const onePieceImages = [onepiece1, onepiece2, onepiece3, onepiece4, onepiece5];
 
 const OnePieceGame = () => {
   const [selectedLevel, setSelectedLevel] = useState(null);
@@ -54,11 +61,19 @@ const OnePieceGame = () => {
           })}
         </div>
         {selectedLevel && (
-          <div style={{ marginTop: '18px', color: '#ffe066', fontWeight: 600 }}>
+          <div style={{ marginTop: '18px', color: '#ffe066', fontWeight: 600, fontSize: '2.2rem' }}>
             Selected Level: {levels.find(l => l.value === selectedLevel).label}
           </div>
         )}
-        {/* Memory game grid will go here */}
+        {selectedLevel === 'easy' && (
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '36px', flexWrap: 'wrap', marginTop: 24 }}>
+            {onePieceImages.map((src, idx) => (
+              <div key={idx} style={{ width: 160, height: 220, background: '#fff', borderRadius: 16, boxShadow: '0 4px 16px #0006', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, color: '#222', fontSize: 24, overflow: 'hidden' }}>
+                <img src={src} alt={`One Piece ${idx+1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
