@@ -184,6 +184,40 @@ h1{
     }
 }
 
+/* Responsive styles for HomePage */
+@media (max-width: 900px) {
+  .main {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    padding: 0 1rem;
+  }
+  .home-page {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    margin-left: 0 !important;
+    width: 100vw;
+  }
+  .cta {
+    font-size: 1.2rem;
+    padding: 0.75rem 1.5rem;
+  }
+  video[playsinline] {
+    width: 100vw;
+    height: 100vh;
+    min-width: 100vw;
+    min-height: 100vh;
+    object-fit: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+}
 @media (max-width: 600px) {
   .loader-container {
     padding: 1rem;
@@ -198,5 +232,9 @@ h1{
   }
   .click-anywhere {
     font-size: 1.1rem;
+  }
+  .cta {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
   }
 }
