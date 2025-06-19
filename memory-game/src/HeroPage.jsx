@@ -10,7 +10,6 @@ const animeCards = [
   {
     title: 'ONE PIECE',
     video: luffyVideo,
-    img: onepieceImg,
     alt: 'One Piece',
   },
   {
@@ -44,7 +43,7 @@ function use3DHoverFollowCursor() {
     card.style.border = '2px solid #00ffe7';
     // Shine effect
     if (shine) {
-      shine.style.background = `radial-gradient(circle at ${x}px ${y}px, #fff7, transparent 60%)`;
+      shine.style.background = `radial-gradient(circle at ${x}px ${y}px, #fff7, transparent 40%)`;
       shine.style.opacity = 1;
     }
   };

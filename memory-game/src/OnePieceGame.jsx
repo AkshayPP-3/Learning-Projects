@@ -13,7 +13,7 @@ const levels = [
 
 const onePieceImages = [onepiece1, onepiece2, onepiece3, onepiece4, onepiece5];
 
-// Fisher-Yates shuffle
+// shuffle
 function shuffleArray(array) {
   const arr = array.slice();
   for (let i = arr.length - 1; i > 0; i--) {
@@ -23,12 +23,11 @@ function shuffleArray(array) {
   return arr;
 }
 
-const CARD_BACK_COLOR = '#ffe066'; // One Piece theme color for card back
 
 const OnePieceGame = () => {
   const [selectedLevel, setSelectedLevel] = useState(null);
   const [hoveredLevel, setHoveredLevel] = useState(null);
-  const [score] = useState(0); // Score state, default 0
+  const [score] = useState(0); 
   const [cards, setCards] = useState(onePieceImages.map((img, i) => ({ img, flipped: false, id: i })));
   const [isFlipping, setIsFlipping] = useState(false);
 
@@ -110,7 +109,7 @@ const OnePieceGame = () => {
             style={{ display: 'flex', justifyContent: 'center', gap: '36px', flexWrap: 'wrap', marginTop: 24 }}
             onClick={handleCardClick}
           >
-            {cards.map((card, idx) => (
+            {cards.map((card) => (
               <div
                 key={card.id}
                 className="flip-card"
@@ -151,7 +150,7 @@ const OnePieceGame = () => {
                       width: '100%',
                       height: '100%',
                       transform: 'rotateY(180deg)',
-                      background: CARD_BACK_COLOR,
+                      background: '#ffe066',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',

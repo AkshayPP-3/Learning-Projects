@@ -94,14 +94,16 @@ h1{
     display: flex;
     padding: 10px 45px;
     text-decoration: none;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Press Start 2P', 'Poppins', sans-serif;
     font-size: 40px;
-    color: rgb(15, 15, 15);
-    background: #edebef;
+    color: #000;
+    background: #fff;
     transition: 1s;
     box-shadow: 6px 6px 0 black;
     transform: skewX(-15deg);
     align-items: center;
+    border: none;
+    cursor: pointer;
 }
 
 .cta:focus {
@@ -126,9 +128,14 @@ h1{
 .cta span {
     transform: skewX(15deg);
     font-family: 'Press Start 2P', 'Poppins', sans-serif;
-    font-weight: normal;
+    font-weight: bold;
     letter-spacing: 2px;
-    color: #232526;
+    color: #000;
+    text-shadow: 0 0 8px #fff, 0 0 16px #232526, 2px 2px 0 #000;
+    font-size: 2.2rem;
+    border-radius: 8px;
+    padding: 8px 24px;
+    box-shadow: 0 0 8px #fff, 0 0 4px #232526;
 }
 
 .cta span:nth-child(2) {
@@ -136,6 +143,10 @@ h1{
     margin-left: 30px;
     position: relative;
     top: 12%;
+    border: none;
+    background: none;
+    box-shadow: none;
+    padding: 0;
 }
 
 .cta svg {
