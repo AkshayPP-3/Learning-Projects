@@ -4,6 +4,15 @@ import mha2 from './assets/Mha/mha2.jpg';
 import mha3 from './assets/Mha/mha3.jpg';
 import mha4 from './assets/Mha/mha4.jpg';
 import mha5 from './assets/Mha/mha5.jpg';
+// Add more images for medium level
+import mha6 from './assets/Mha/mha6.jpg';
+import mha7 from './assets/Mha/mha7.jpg';
+import mha8 from './assets/Mha/mha8.jpg';
+import mha9 from './assets/Mha/mha9.jpg';
+import mha10 from './assets/Mha/mha10.jpg';
+import mha11 from './assets/Mha/mha11.jpg';
+import mha12 from './assets/Mha/mha12.jpg';
+import mha13 from './assets/Mha/mha13.jpg';
 
 const levels = [
   { label: 'Easy', value: 'easy' },
@@ -12,6 +21,7 @@ const levels = [
 ];
 
 const mhaImages = [mha1, mha2, mha3, mha4, mha5];
+const mhaImagesMedium = [mha6, mha7, mha8, mha9, mha10, mha11, mha12, mha13];
 
 function shuffleArray(array) {
   const arr = array.slice();
@@ -28,10 +38,19 @@ const MhaGame = () => {
   const [selectedLevel, setSelectedLevel] = useState(null);
   const [hoveredLevel, setHoveredLevel] = useState(null);
   const [cards, setCards] = useState(mhaImages.map((img, i) => ({ img, flipped: false, id: i })));
+  const [visibleCards, setVisibleCards] = useState([]);
   const [isFlipping, setIsFlipping] = useState(false);
   const [clickedIds, setClickedIds] = useState([]);
   const [gameOver, setGameOver] = useState(false);
   const [win, setWin] = useState(false);
+
+  // Preload all medium images on mount
+  React.useEffect(() => {
+    mhaImagesMedium.forEach(img => {
+      const image = new window.Image();
+      image.src = img;
+    });
+  }, []);
 
   React.useEffect(() => {
     if (selectedLevel === 'easy') {
@@ -39,6 +58,13 @@ const MhaGame = () => {
       setClickedIds([]);
       setGameOver(false);
       setWin(false);
+      setVisibleCards([]);
+    } else if (selectedLevel === 'medium') {
+      setCards(mhaImagesMedium.map((img, i) => ({ img, flipped: false, id: i })));
+      setClickedIds([]);
+      setGameOver(false);
+      setWin(false);
+      setVisibleCards(shuffleArray(mhaImagesMedium.map((img, i) => ({ img, flipped: false, id: i }))).slice(0, 5));
     }
   }, [selectedLevel]);
 
@@ -50,17 +76,31 @@ const MhaGame = () => {
     }
     const newClicked = [...clickedIds, id];
     setClickedIds(newClicked);
-    if (newClicked.length === cards.length) {
-      setWin(true);
-      return;
-    }
-    setIsFlipping(true);
-    setCards(prev => prev.map(card => ({ ...card, flipped: true })));
-    setTimeout(() => {
-      setCards(prev => shuffleArray(prev.map(card => ({ ...card, flipped: false }))));
+    if (selectedLevel === 'medium') {
+      if (newClicked.length === mhaImagesMedium.length) {
+        setWin(true);
+        return;
+      }
+      setIsFlipping(true);
+      setVisibleCards(prev => prev.map(card => ({ ...card, flipped: true })));
+      setTimeout(() => {
+        const shuffled = shuffleArray(mhaImagesMedium.map((img, i) => ({ img, flipped: false, id: i })));
+        setVisibleCards(shuffled.slice(0, 5));
+        setIsFlipping(false);
+      }, 1000);
+    } else {
+      if (newClicked.length === cards.length) {
+        setWin(true);
+        return;
+      }
+      setIsFlipping(true);
+      setCards(prev => prev.map(card => ({ ...card, flipped: true })));
+      setTimeout(() => {
+        setCards(prev => shuffleArray(prev.map(card => ({ ...card, flipped: false }))));
 
-      setIsFlipping(false);
-    }, 1000);
+        setIsFlipping(false);
+      }, 1000);
+    }
   };
 
   return (
@@ -229,6 +269,69 @@ const MhaGame = () => {
           )}
           {selectedLevel === 'easy' && gameOver && null}
           {selectedLevel === 'easy' && win && null}
+          {selectedLevel === 'medium' && (
+            <div style={{ marginTop: '10px', marginBottom: '10px', color: '#fff', fontWeight: 500, fontSize: '1.2rem', display: 'flex', justifyContent: 'center', gap: '32px' }}>
+              <div>Current Score: {clickedIds.length}</div>
+              <div>Total Cards: {mhaImagesMedium.length}</div>
+            </div>
+          )}
+          {selectedLevel === 'medium' && (
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '36px', flexWrap: 'wrap', marginTop: 24 }}>
+              {visibleCards.map((card) => (
+                <div
+                  key={card.id}
+                  className="flip-card"
+                  style={{ width: 200, height: 280, perspective: 800, borderRadius: 16, boxShadow: '0 4px 16px #0006', margin: 0 }}
+                  onClick={e => { e.stopPropagation(); handleCardClick(card.id); }}
+                >
+                  <div
+                    className="flip-card-inner"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      borderRadius: 16,
+                      transition: 'transform 0.5s',
+                      transformStyle: 'preserve-3d',
+                      position: 'relative',
+                      transform: card.flipped ? 'rotateY(180deg)' : 'none',
+                    }}
+                  >
+                    {/* Card Front (Image) */}
+                    <div
+                      className="flip-card-front"
+                      style={{
+                        position: 'absolute',
+                        width: '100%',
+                        height: '100%',
+                        backfaceVisibility: 'hidden',
+                        borderRadius: 16,
+                        overflow: 'hidden',
+                      }}
+                    >
+                      <img src={card.img} alt={`MHA ${card.id + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    </div>
+                    {/* Card Back (just yellow color) */}
+                    <div
+                      className="flip-card-back"
+                      style={{
+                        position: 'absolute',
+                        width: '100%',
+                        height: '100%',
+                        transform: 'rotateY(180deg)',
+                        background: '#ffe066',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        borderRadius: 16,
+                      }}
+                    ></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+          {selectedLevel === 'medium' && gameOver && null}
+          {selectedLevel === 'medium' && win && null}
         </div>
       </div>
     </>
