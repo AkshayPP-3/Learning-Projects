@@ -27,19 +27,36 @@ const BleachGame = () => {
   const [hoveredLevel, setHoveredLevel] = useState(null);
   const [cards, setCards] = useState(bleachImages.map((img, i) => ({ img, flipped: false, id: i })));
   const [isFlipping, setIsFlipping] = useState(false);
+  const [clickedIds, setClickedIds] = useState([]);
+  const [gameOver, setGameOver] = useState(false);
+  const [win, setWin] = useState(false);
 
   React.useEffect(() => {
     if (selectedLevel === 'easy') {
       setCards(bleachImages.map((img, i) => ({ img, flipped: false, id: i })));
+      setClickedIds([]);
+      setGameOver(false);
+      setWin(false);
     }
   }, [selectedLevel]);
 
   const handleCardClick = (id) => {
-    if (isFlipping) return;
+    if (isFlipping || gameOver || win) return;
+    if (clickedIds.includes(id)) {
+      setGameOver(true);
+      return;
+    }
+    const newClicked = [...clickedIds, id];
+    setClickedIds(newClicked);
+    if (newClicked.length === cards.length) {
+      setWin(true);
+      return;
+    }
     setIsFlipping(true);
     setCards(prev => prev.map(card => ({ ...card, flipped: true })));
     setTimeout(() => {
       setCards(prev => shuffleArray(prev.map(card => ({ ...card, flipped: false }))));
+
       setIsFlipping(false);
     }, 1000);
   };
@@ -91,6 +108,12 @@ const BleachGame = () => {
         {selectedLevel && (
           <div style={{ marginTop: '10px', color: '#ffe066', fontWeight: 600, fontSize: '2.2rem', marginBottom: '10px' }}>
             Selected Level: {levels.find(l => l.value === selectedLevel).label}
+          </div>
+        )}
+        {selectedLevel === 'easy' && (
+          <div style={{ marginTop: '0px', marginBottom: '10px', color: '#fff', fontWeight: 500, fontSize: '1.2rem', display: 'flex', justifyContent: 'center', gap: '32px' }}>
+            <div>Current Score: {clickedIds.length}</div>
+            <div>Total Cards: {cards.length}</div>
           </div>
         )}
         {selectedLevel === 'easy' && (
@@ -147,6 +170,12 @@ const BleachGame = () => {
               </div>
             ))}
           </div>
+        )}
+        {selectedLevel === 'easy' && gameOver && (
+          <div style={{ color: 'red', fontWeight: 700, fontSize: '1.3rem', marginTop: 8 }}>You lost! Try again.</div>
+        )}
+        {selectedLevel === 'easy' && win && (
+          <div style={{ color: '#ffe066', fontWeight: 700, fontSize: '1.3rem', marginTop: 8 }}>You win! Great memory!</div>
         )}
       </div>
     </div>
