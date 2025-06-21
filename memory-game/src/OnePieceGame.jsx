@@ -34,6 +34,10 @@ const OnePieceGame = () => {
   const [gameOver, setGameOver] = useState(false);
   const [win, setWin] = useState(false);
 
+  // One piece GIF
+  const winGif = "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDdsM2R2bTRtODY3aWN1bDJ1YWM1bHc4MGdmeG0wbGVza2Z3d2EydSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/nZ8HKcnfNWCOI/giphy.gif"; // Happy Luffy
+  const loseGif = "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHR1cmIyMHljcDAwZ3BsOWkybnJ4cmVoaWp2MWM3cW1lZXIwMDhoYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RkhqXObfsfyhWwh4jL/giphy.gif"; // Sad Luffy
+
   // Reset handler
   const handleReset = () => {
     setCards(onePieceImages.map((img, i) => ({ img, flipped: false, id: i })));
@@ -88,28 +92,53 @@ const OnePieceGame = () => {
         minWidth: '340px',
         position: 'relative',
       }}>
-        {/* Simple Win/Lose Message */}
-        {gameOver && (
-          <div style={{ color: 'red', fontWeight: 700, fontSize: '2rem', margin: '16px 0' }}>Game Over! You clicked the same card twice.</div>
-        )}
-        {win && (
-          <div style={{ color: '#ffe066', fontWeight: 700, fontSize: '2rem', margin: '16px 0' }}>You Win! You clicked all cards once!</div>
-        )}
-        {/* Reset Button for Game Over or Win */}
+        {/* Popup Modal for Win and Lose */}
         {(gameOver || win) && (
-          <button onClick={handleReset} style={{
-            marginTop: 8,
-            padding: '10px 32px',
-            fontSize: '1.1rem',
-            borderRadius: 8,
-            border: 'none',
-            background: '#ffe066',
-            color: '#222',
-            fontWeight: 700,
-            cursor: 'pointer',
-            boxShadow: '0 2px 8px #0006',
-            transition: 'all 0.2s',
-          }}>Play Again</button>
+          <div style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            background: 'rgba(0,0,0,0.7)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 9999,
+          }}>
+            <div style={{
+              background: '#222',
+              borderRadius: 24,
+              padding: '36px 32px 28px 32px',
+              boxShadow: '0 8px 40px #000a',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              maxWidth: 340,
+              minWidth: 260,
+              position: 'relative',
+            }}>
+              <img src={gameOver ? loseGif : winGif} alt={gameOver ? 'Game Over' : 'You Win'} style={{ width: 180, height: 120, objectFit: 'cover', borderRadius: 12, marginBottom: 18, boxShadow: '0 2px 16px #0008' }} />
+              <div style={{ color: gameOver ? 'red' : '#ffe066', fontWeight: 800, fontSize: '2rem', marginBottom: 12, textAlign: 'center', lineHeight: 1.4 }}>
+                {gameOver
+                  ? 'Defeated this round! Even Luffy stumbles. Try again, future Pirate King!'
+                  : 'Victory! You’ve got a memory as strong as Luffy’s will!'}
+              </div>
+              <button onClick={handleReset} style={{
+                marginTop: 8,
+                padding: '10px 32px',
+                fontSize: '1.1rem',
+                borderRadius: 8,
+                border: 'none',
+                background: '#ffe066',
+                color: '#222',
+                fontWeight: 700,
+                cursor: 'pointer',
+                boxShadow: '0 2px 8px #0006',
+                transition: 'all 0.2s',
+              }}>Play Again</button>
+            </div>
+          </div>
         )}
         <h1 style={{ fontFamily: 'One Piece, Impact, Arial', fontSize: '2.5rem', letterSpacing: '2px', color: '#ffe066', textShadow: '2px 2px 8px #000, 0 0 12px #00ffe7' }}>
             CHOOSE YOUR LEVEL
