@@ -47,7 +47,22 @@ function HomePage() {
 function AnimatedPlayButton() {
   const navigate = useNavigate();
   return (
-    <button className="cta" onClick={() => navigate('/heropage')}>
+    <button 
+      className="cta retro-play-btn" 
+      onClick={() => navigate('/heropage')}
+      style={{
+        fontFamily: `'Press Start 2P', 'VT323', 'Courier New', Courier, monospace`,
+        fontWeight: 700,
+        letterSpacing: '2.5px',
+        fontSize: '1.6rem',
+        textTransform: 'uppercase',
+        outline: 'none',
+        position: 'relative',
+        zIndex: 2,
+        border: 'none',
+        textShadow: 'none',
+      }}
+    >
        <span>PLAY</span>
     <span>
       <svg width="66px" height="43px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
