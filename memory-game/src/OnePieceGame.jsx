@@ -27,26 +27,53 @@ function shuffleArray(array) {
 const OnePieceGame = () => {
   const [selectedLevel, setSelectedLevel] = useState(null);
   const [hoveredLevel, setHoveredLevel] = useState(null);
-  const [score] = useState(0); 
+  const [score, setScore] = useState(0);
   const [cards, setCards] = useState(onePieceImages.map((img, i) => ({ img, flipped: false, id: i })));
   const [isFlipping, setIsFlipping] = useState(false);
+  const [clickedIds, setClickedIds] = useState([]);
+  const [gameOver, setGameOver] = useState(false);
+  const [win, setWin] = useState(false);
 
-  // Reset cards when level changes
+  // Reset handler
+  const handleReset = () => {
+    setCards(onePieceImages.map((img, i) => ({ img, flipped: false, id: i })));
+    setScore(0);
+    setClickedIds([]);
+    setGameOver(false);
+    setWin(false);
+    setIsFlipping(false);
+  };
+
+  // Reset cards and game state when level changes
   React.useEffect(() => {
     if (selectedLevel === 'easy') {
       setCards(onePieceImages.map((img, i) => ({ img, flipped: false, id: i })));
+      setScore(0);
+      setClickedIds([]);
+      setGameOver(false);
+      setWin(false);
     }
   }, [selectedLevel]);
 
-  const handleCardClick = () => {
-    if (isFlipping) return;
+  const handleCardClick = (id) => {
+    if (isFlipping || gameOver || win) return;
+    if (clickedIds.includes(id)) {
+      setGameOver(true);
+      return;
+    }
+    const newClicked = [...clickedIds, id];
+    setClickedIds(newClicked);
+    setScore(newClicked.length);
+    if (newClicked.length === onePieceImages.length) {
+      setWin(true);
+      return;
+    }
     setIsFlipping(true);
-    // Flip all cards to back
     setCards(prev => prev.map(card => ({ ...card, flipped: true })));
     setTimeout(() => {
       setCards(prev => shuffleArray(prev.map(card => ({ ...card, flipped: false }))));
       setIsFlipping(false);
-    }, 1000); // 1 second for flip effect
+    }, 1000);
   };
 
   return (
@@ -59,7 +86,31 @@ const OnePieceGame = () => {
         color: '#fff',
         textAlign: 'center',
         minWidth: '340px',
+        position: 'relative',
       }}>
+        {/* Simple Win/Lose Message */}
+        {gameOver && (
+          <div style={{ color: 'red', fontWeight: 700, fontSize: '2rem', margin: '16px 0' }}>Game Over! You clicked the same card twice.</div>
+        )}
+        {win && (
+          <div style={{ color: '#ffe066', fontWeight: 700, fontSize: '2rem', margin: '16px 0' }}>You Win! You clicked all cards once!</div>
+        )}
+        {/* Reset Button for Game Over or Win */}
+        {(gameOver || win) && (
+          <button onClick={handleReset} style={{
+            marginTop: 8,
+            padding: '10px 32px',
+            fontSize: '1.1rem',
+            borderRadius: 8,
+            border: 'none',
+            background: '#ffe066',
+            color: '#222',
+            fontWeight: 700,
+            cursor: 'pointer',
+            boxShadow: '0 2px 8px #0006',
+            transition: 'all 0.2s',
+          }}>Play Again</button>
+        )}
         <h1 style={{ fontFamily: 'One Piece, Impact, Arial', fontSize: '2.5rem', letterSpacing: '2px', color: '#ffe066', textShadow: '2px 2px 8px #000, 0 0 12px #00ffe7' }}>
             CHOOSE YOUR LEVEL
         </h1>
@@ -107,14 +158,13 @@ const OnePieceGame = () => {
         {selectedLevel === 'easy' && (
           <div
             style={{ display: 'flex', justifyContent: 'center', gap: '36px', flexWrap: 'wrap', marginTop: 24 }}
-            onClick={handleCardClick}
           >
             {cards.map((card) => (
               <div
                 key={card.id}
                 className="flip-card"
                 style={{ width: 200, height: 280, perspective: 800, borderRadius: 16, boxShadow: '0 4px 16px #0006', margin: 0 }}
-                onClick={e => { e.stopPropagation(); handleCardClick(); }}
+                onClick={e => { e.stopPropagation(); handleCardClick(card.id); }}
               >
                 <div
                   className="flip-card-inner"
