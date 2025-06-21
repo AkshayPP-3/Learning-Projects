@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
+import bleach1 from './assets/Bleach/bleach1.jpg';
+import bleach2 from './assets/Bleach/bleach2.jpg';
+import bleach3 from './assets/Bleach/bleach3.jpg';
+import bleach4 from './assets/Bleach/bleach4.jpg';
+import bleach5 from './assets/Bleach/bleach5.jpg';
 
 const levels = [
   { label: 'Easy', value: 'easy' },
   { label: 'Medium', value: 'medium' },
   { label: 'Hard', value: 'hard' },
 ];
+
+const bleachImages = [bleach1, bleach2, bleach3, bleach4, bleach5];
 
 const BleachGame = () => {
   const [selectedLevel, setSelectedLevel] = useState(null);
@@ -54,8 +61,42 @@ const BleachGame = () => {
           })}
         </div>
         {selectedLevel && (
-          <div style={{ marginTop: '18px', color: '#ffe066', fontWeight: 600 }}>
+          <div style={{ marginTop: '10px', color: '#ffe066', fontWeight: 600, fontSize: '2.2rem', marginBottom: '10px' }}>
             Selected Level: {levels.find(l => l.value === selectedLevel).label}
+          </div>
+        )}
+        {selectedLevel === 'easy' && (
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '36px', flexWrap: 'wrap', marginTop: 24 }}>
+            {bleachImages.map((img, i) => (
+              <div
+                key={i}
+                className="flip-card"
+                style={{ width: 200, height: 280, perspective: 800, borderRadius: 16, boxShadow: '0 4px 16px #0006', margin: 0 }}
+              >
+                <div
+                  className="flip-card-inner"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    borderRadius: 16,
+                    position: 'relative',
+                  }}
+                >
+                  <div
+                    className="flip-card-front"
+                    style={{
+                      position: 'absolute',
+                      width: '100%',
+                      height: '100%',
+                      borderRadius: 16,
+                      overflow: 'hidden',
+                    }}
+                  >
+                    <img src={img} alt={`Bleach ${i + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         )}
       </div>

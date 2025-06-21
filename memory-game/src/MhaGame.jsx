@@ -161,6 +161,11 @@ const MhaGame = () => {
               );
             })}
           </div>
+          {selectedLevel && (
+            <div style={{ marginTop: '10px', color: '#ffe066', fontWeight: 600, fontSize: '2.2rem', marginBottom: '10px' }}>
+              Selected Level: {levels.find(l => l.value === selectedLevel).label}
+            </div>
+          )}
           {selectedLevel === 'easy' && (
             <div style={{ marginTop: '10px', marginBottom: '10px', color: '#fff', fontWeight: 500, fontSize: '1.2rem', display: 'flex', justifyContent: 'center', gap: '32px' }}>
               <div>Current Score: {clickedIds.length}</div>
