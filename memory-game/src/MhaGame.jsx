@@ -13,17 +13,38 @@ const levels = [
 
 const mhaImages = [mha1, mha2, mha3, mha4, mha5];
 
+function shuffleArray(array) {
+  const arr = array.slice();
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
 const MhaGame = () => {
   const [selectedLevel, setSelectedLevel] = useState(null);
   const [hoveredLevel, setHoveredLevel] = useState(null);
-  const [cards, setCards] = useState(mhaImages.map((img, i) => ({ img, id: i })));
+  const [cards, setCards] = useState(mhaImages.map((img, i) => ({ img, flipped: false, id: i })));
+  const [isFlipping, setIsFlipping] = useState(false);
 
   React.useEffect(() => {
     if (selectedLevel === 'easy') {
-      setCards(mhaImages.map((img, i) => ({ img, id: i })));
+      setCards(mhaImages.map((img, i) => ({ img, flipped: false, id: i })));
     }
   }, [selectedLevel]);
-  
+
+  const handleCardClick = (id) => {
+    if (isFlipping) return;
+    setIsFlipping(true);
+    setCards(prev => prev.map(card => ({ ...card, flipped: true })));
+    setTimeout(() => {
+      setCards(prev => shuffleArray(prev.map(card => ({ ...card, flipped: false }))));
+
+      setIsFlipping(false);
+    }, 1000);
+  };
+
   return (
     <div style={{ minHeight: '100vh', minWidth: '100vw', background: '#2DC7FF', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
       <div style={{
@@ -81,6 +102,7 @@ const MhaGame = () => {
                 key={card.id}
                 className="flip-card"
                 style={{ width: 200, height: 280, perspective: 800, borderRadius: 16, boxShadow: '0 4px 16px #0006', margin: 0 }}
+                onClick={e => { e.stopPropagation(); handleCardClick(card.id); }}
               >
                 <div
                   className="flip-card-inner"
@@ -88,7 +110,10 @@ const MhaGame = () => {
                     width: '100%',
                     height: '100%',
                     borderRadius: 16,
+                    transition: 'transform 0.5s',
+                    transformStyle: 'preserve-3d',
                     position: 'relative',
+                    transform: card.flipped ? 'rotateY(180deg)' : 'none',
                   }}
                 >
                   {/* Card Front (Image) */}
@@ -98,12 +123,28 @@ const MhaGame = () => {
                       position: 'absolute',
                       width: '100%',
                       height: '100%',
+                      backfaceVisibility: 'hidden',
                       borderRadius: 16,
                       overflow: 'hidden',
                     }}
                   >
                     <img src={card.img} alt={`MHA ${card.id + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   </div>
+                  {/* Card Back (just yellow color) */}
+                  <div
+                    className="flip-card-back"
+                    style={{
+                      position: 'absolute',
+                      width: '100%',
+                      height: '100%',
+                      transform: 'rotateY(180deg)',
+                      background: '#ffe066',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      borderRadius: 16,
+                    }}
+                  ></div>
                 </div>
               </div>
             ))}
