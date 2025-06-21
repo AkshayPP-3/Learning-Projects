@@ -12,6 +12,17 @@ import onepiece10 from './assets/OnePiece/onepiece10.jpg';
 import onepiece11 from './assets/OnePiece/onepiece11.jpg';
 import onepiece12 from './assets/OnePiece/onepiece12.jpg';
 import onepiece13 from './assets/OnePiece/onepiece13.jpg';
+import onepiece14 from './assets/OnePiece/onepiece14.jpg';
+import onepiece15 from './assets/OnePiece/onepiece15.jpg';
+import onepiece16 from './assets/OnePiece/onepiece16.jpg';
+import onepiece17 from './assets/OnePiece/onepiece17.jpg';
+import onepiece18 from './assets/OnePiece/onepiece18.jpg';
+import onepiece19 from './assets/OnePiece/onepiece19.jpg';
+import onepiece20 from './assets/OnePiece/onepiece20.jpg';
+import onepiece21 from './assets/OnePiece/onepiece21.jpg';
+import onepiece22 from './assets/OnePiece/onepiece22.jpg';
+import onepiece23 from './assets/OnePiece/onepiece23.jpg';
+import onepiece24 from './assets/OnePiece/onepiece24.jpg';
 
 const levels = [
   { label: 'Easy', value: 'easy' },
@@ -21,6 +32,10 @@ const levels = [
 
 const onePieceImages = [onepiece1, onepiece2, onepiece3, onepiece4, onepiece5];
 const onePieceImagesMedium = [onepiece6, onepiece7, onepiece8, onepiece9, onepiece10, onepiece11, onepiece12, onepiece13];
+const onePieceImagesHard = [
+  onepiece14, onepiece15, onepiece16, onepiece17, onepiece18, onepiece19,
+  onepiece20, onepiece21, onepiece22, onepiece23, onepiece24
+];
 
 // shuffle
 function shuffleArray(array) {
@@ -50,6 +65,7 @@ const OnePieceGame = () => {
 
   // Helper to get the right card set
   const getCardSet = () => {
+    if (selectedLevel === 'hard') return onePieceImagesHard;
     if (selectedLevel === 'medium') return onePieceImagesMedium;
     return onePieceImages;
   };
@@ -63,16 +79,20 @@ const OnePieceGame = () => {
     setGameOver(false);
     setWin(false);
     setIsFlipping(false);
-    if (selectedLevel === 'medium') {
+    if (selectedLevel === 'medium' || selectedLevel === 'hard') {
       setVisibleCards(shuffleArray(cardSet.map((img, i) => ({ img, flipped: false, id: i }))).slice(0, 5));
     } else {
       setVisibleCards([]);
     }
   };
 
-  // Preload all medium images on mount
+  // Preload all medium and hard images on mount
   React.useEffect(() => {
     onePieceImagesMedium.forEach(img => {
+      const image = new window.Image();
+      image.src = img;
+    });
+    onePieceImagesHard.forEach(img => {
       const image = new window.Image();
       image.src = img;
     });
@@ -87,7 +107,7 @@ const OnePieceGame = () => {
     setGameOver(false);
     setWin(false);
     setIsFlipping(false);
-    if (selectedLevel === 'medium') {
+    if (selectedLevel === 'medium' || selectedLevel === 'hard') {
       setVisibleCards(shuffleArray(cardSet.map((img, i) => ({ img, flipped: false, id: i }))).slice(0, 5));
     } else {
       setVisibleCards([]);
@@ -111,7 +131,7 @@ const OnePieceGame = () => {
     }
     setIsFlipping(true);
     // Flip all visible cards
-    if (selectedLevel === 'medium') {
+    if (selectedLevel === 'medium' || selectedLevel === 'hard') {
       setVisibleCards(prev => prev.map(card => ({ ...card, flipped: true })));
       setTimeout(() => {
         // Shuffle all 8, pick 5 new visible
@@ -130,7 +150,7 @@ const OnePieceGame = () => {
 
   // For rendering, use visibleCards for medium, cards for easy
   const renderCards = () => {
-    if (selectedLevel === 'medium') {
+    if (selectedLevel === 'medium' || selectedLevel === 'hard') {
       return (
         <div style={{ display: 'flex', justifyContent: 'center', gap: '36px', flexWrap: 'wrap', marginTop: 24 }}>
           {visibleCards.map((card) => (
@@ -356,8 +376,16 @@ const OnePieceGame = () => {
             <div>Total Cards: {onePieceImagesMedium.length}</div>
           </div>
         )}
+        {/* Score and Total Cards display for Hard level */}
+        {selectedLevel === 'hard' && (
+          <div style={{ marginTop: '10px', marginBottom: '10px', color: '#fff', fontWeight: 500, fontSize: '1.2rem', display: 'flex', justifyContent: 'center', gap: '32px' }}>
+            <div>Current Score: {clickedIds.length}</div>
+            <div>Total Cards: {onePieceImagesHard.length}</div>
+          </div>
+        )}
         {selectedLevel === 'easy' && renderCards()}
         {selectedLevel === 'medium' && renderCards()}
+        {selectedLevel === 'hard' && renderCards()}
       </div>
     </div>
   );
