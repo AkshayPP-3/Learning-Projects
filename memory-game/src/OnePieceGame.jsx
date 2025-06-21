@@ -4,6 +4,14 @@ import onepiece2 from './assets/OnePiece/onepiece2.jpg';
 import onepiece3 from './assets/OnePiece/onepiece3.jpg';
 import onepiece4 from './assets/OnePiece/onepiece4.jpg';
 import onepiece5 from './assets/OnePiece/onepiece5.jpg';
+import onepiece6 from './assets/OnePiece/onepiece6.jpg';
+import onepiece7 from './assets/OnePiece/onepiece7.jpg';
+import onepiece8 from './assets/OnePiece/onepiece8.jpg';
+import onepiece9 from './assets/OnePiece/onepiece9.jpg';
+import onepiece10 from './assets/OnePiece/onepiece10.jpg';
+import onepiece11 from './assets/OnePiece/onepiece11.jpg';
+import onepiece12 from './assets/OnePiece/onepiece12.jpg';
+import onepiece13 from './assets/OnePiece/onepiece13.jpg';
 
 const levels = [
   { label: 'Easy', value: 'easy' },
@@ -12,6 +20,7 @@ const levels = [
 ];
 
 const onePieceImages = [onepiece1, onepiece2, onepiece3, onepiece4, onepiece5];
+const onePieceImagesMedium = [onepiece6, onepiece7, onepiece8, onepiece9, onepiece10, onepiece11, onepiece12, onepiece13];
 
 // shuffle
 function shuffleArray(array) {
@@ -33,29 +42,55 @@ const OnePieceGame = () => {
   const [clickedIds, setClickedIds] = useState([]);
   const [gameOver, setGameOver] = useState(false);
   const [win, setWin] = useState(false);
+  const [visibleCards, setVisibleCards] = useState([]);
 
   // One piece GIF
   const winGif = "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDdsM2R2bTRtODY3aWN1bDJ1YWM1bHc4MGdmeG0wbGVza2Z3d2EydSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/nZ8HKcnfNWCOI/giphy.gif"; // Happy Luffy
   const loseGif = "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHR1cmIyMHljcDAwZ3BsOWkybnJ4cmVoaWp2MWM3cW1lZXIwMDhoYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RkhqXObfsfyhWwh4jL/giphy.gif"; // Sad Luffy
 
+  // Helper to get the right card set
+  const getCardSet = () => {
+    if (selectedLevel === 'medium') return onePieceImagesMedium;
+    return onePieceImages;
+  };
+
   // Reset handler
   const handleReset = () => {
-    setCards(onePieceImages.map((img, i) => ({ img, flipped: false, id: i })));
+    const cardSet = getCardSet();
+    setCards(cardSet.map((img, i) => ({ img, flipped: false, id: i })));
     setScore(0);
     setClickedIds([]);
     setGameOver(false);
     setWin(false);
     setIsFlipping(false);
+    if (selectedLevel === 'medium') {
+      setVisibleCards(shuffleArray(cardSet.map((img, i) => ({ img, flipped: false, id: i }))).slice(0, 5));
+    } else {
+      setVisibleCards([]);
+    }
   };
+
+  // Preload all medium images on mount
+  React.useEffect(() => {
+    onePieceImagesMedium.forEach(img => {
+      const image = new window.Image();
+      image.src = img;
+    });
+  }, []);
 
   // Reset cards and game state when level changes
   React.useEffect(() => {
-    if (selectedLevel === 'easy') {
-      setCards(onePieceImages.map((img, i) => ({ img, flipped: false, id: i })));
-      setScore(0);
-      setClickedIds([]);
-      setGameOver(false);
-      setWin(false);
+    const cardSet = getCardSet();
+    setCards(cardSet.map((img, i) => ({ img, flipped: false, id: i })));
+    setScore(0);
+    setClickedIds([]);
+    setGameOver(false);
+    setWin(false);
+    setIsFlipping(false);
+    if (selectedLevel === 'medium') {
+      setVisibleCards(shuffleArray(cardSet.map((img, i) => ({ img, flipped: false, id: i }))).slice(0, 5));
+    } else {
+      setVisibleCards([]);
     }
   }, [selectedLevel]);
 // You lost 
@@ -69,16 +104,145 @@ const OnePieceGame = () => {
     const newClicked = [...clickedIds, id];
     setClickedIds(newClicked);
     setScore(newClicked.length); // Update score 
-    if (newClicked.length === onePieceImages.length) {
+    const cardSet = getCardSet();
+    if (newClicked.length === cardSet.length) {
       setWin(true);
       return;
     }
     setIsFlipping(true);
-    setCards(prev => prev.map(card => ({ ...card, flipped: true })));
-    setTimeout(() => {
-      setCards(prev => shuffleArray(prev.map(card => ({ ...card, flipped: false }))));
-      setIsFlipping(false);
-    }, 1000); // Flip duration
+    // Flip all visible cards
+    if (selectedLevel === 'medium') {
+      setVisibleCards(prev => prev.map(card => ({ ...card, flipped: true })));
+      setTimeout(() => {
+        // Shuffle all 8, pick 5 new visible
+        const shuffled = shuffleArray(cardSet.map((img, i) => ({ img, flipped: false, id: i })));
+        setVisibleCards(shuffled.slice(0, 5));
+        setIsFlipping(false);
+      }, 1000); // Flip duration
+    } else {
+      setCards(prev => prev.map(card => ({ ...card, flipped: true })));
+      setTimeout(() => {
+        setCards(prev => shuffleArray(prev.map(card => ({ ...card, flipped: false }))));
+        setIsFlipping(false);
+      }, 1000); // Flip duration
+    }
+  };
+
+  // For rendering, use visibleCards for medium, cards for easy
+  const renderCards = () => {
+    if (selectedLevel === 'medium') {
+      return (
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '36px', flexWrap: 'wrap', marginTop: 24 }}>
+          {visibleCards.map((card) => (
+            <div
+              key={card.id}
+              className="flip-card"
+              style={{ width: 200, height: 280, perspective: 800, borderRadius: 16, boxShadow: '0 4px 16px #0006', margin: 0 }}
+              onClick={e => { e.stopPropagation(); handleCardClick(card.id); }}
+            >
+              <div
+                className="flip-card-inner"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  borderRadius: 16,
+                  transition: 'transform 0.5s',
+                  transformStyle: 'preserve-3d',
+                  position: 'relative',
+                  transform: card.flipped ? 'rotateY(180deg)' : 'none',
+                }}
+              >
+                {/* Card Front (Image) */}
+                <div
+                  className="flip-card-front"
+                  style={{
+                    position: 'absolute',
+                    width: '100%',
+                    height: '100%',
+                    backfaceVisibility: 'hidden',
+                    borderRadius: 16,
+                    overflow: 'hidden',
+                  }}
+                >
+                  <img src={card.img} alt={`One Piece ${card.id + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                </div>
+                {/* Card Back (just yellow color) */}
+                <div
+                  className="flip-card-back"
+                  style={{
+                    position: 'absolute',
+                    width: '100%',
+                    height: '100%',
+                    transform: 'rotateY(180deg)',
+                    background: '#ffe066',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    borderRadius: 16,
+                  }}
+                ></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      );
+    }
+    // Easy level
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '36px', flexWrap: 'wrap', marginTop: 24 }}>
+        {cards.map((card) => (
+          <div
+            key={card.id}
+            className="flip-card"
+            style={{ width: 200, height: 280, perspective: 800, borderRadius: 16, boxShadow: '0 4px 16px #0006', margin: 0 }}
+            onClick={e => { e.stopPropagation(); handleCardClick(card.id); }}
+          >
+            <div
+              className="flip-card-inner"
+              style={{
+                width: '100%',
+                height: '100%',
+                borderRadius: 16,
+                transition: 'transform 0.5s',
+                transformStyle: 'preserve-3d',
+                position: 'relative',
+                transform: card.flipped ? 'rotateY(180deg)' : 'none',
+              }}
+            >
+              {/* Card Front (Image) */}
+              <div
+                className="flip-card-front"
+                style={{
+                  position: 'absolute',
+                  width: '100%',
+                  height: '100%',
+                  backfaceVisibility: 'hidden',
+                  borderRadius: 16,
+                  overflow: 'hidden',
+                }}
+              >
+                <img src={card.img} alt={`One Piece ${card.id + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              </div>
+              {/* Card Back (just yellow color) */}
+              <div
+                className="flip-card-back"
+                style={{
+                  position: 'absolute',
+                  width: '100%',
+                  height: '100%',
+                  transform: 'rotateY(180deg)',
+                  background: '#ffe066',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderRadius: 16,
+                }}
+              ></div>
+            </div>
+          </div>
+        ))}
+      </div>
+    );
   };
 
   return (
@@ -185,65 +349,15 @@ const OnePieceGame = () => {
             <div>Total Cards: {onePieceImages.length}</div>
           </div>
         )}
-        {selectedLevel === 'easy' && (
-          <div
-            style={{ display: 'flex', justifyContent: 'center', gap: '36px', flexWrap: 'wrap', marginTop: 24 }}
-          >
-            {cards.map((card) => (
-              <div
-                key={card.id}
-                className="flip-card"
-                style={{ width: 200, height: 280, perspective: 800, borderRadius: 16, boxShadow: '0 4px 16px #0006', margin: 0 }}
-                onClick={e => { e.stopPropagation(); handleCardClick(card.id); }}
-              >
-                <div
-                  className="flip-card-inner"
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    borderRadius: 16,
-                    transition: 'transform 0.5s',
-                    transformStyle: 'preserve-3d',
-                    position: 'relative',
-                    transform: card.flipped ? 'rotateY(180deg)' : 'none',
-                  }}
-                >
-                  {/* Card Front (Image) */}
-                  <div
-                    className="flip-card-front"
-                    style={{
-                      position: 'absolute',
-                      width: '100%',
-                      height: '100%',
-                      backfaceVisibility: 'hidden',
-                      borderRadius: 16,
-                      overflow: 'hidden',
-                    }}
-                  >
-                    <img src={card.img} alt={`One Piece ${card.id + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                  </div>
-                  {/* Card Back (just yellow color) */}
-                  <div
-                    className="flip-card-back"
-                    style={{
-                      position: 'absolute',
-                      width: '100%',
-                      height: '100%',
-                      transform: 'rotateY(180deg)',
-                      background: '#ffe066',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      borderRadius: 16,
-                    }}
-                  ></div>
-                </div>
-              </div>
-            ))}
+        {/* Score and Total Cards display for Medium level */}
+        {selectedLevel === 'medium' && (
+          <div style={{ marginTop: '10px', marginBottom: '10px', color: '#fff', fontWeight: 500, fontSize: '1.2rem', display: 'flex', justifyContent: 'center', gap: '32px' }}>
+            <div>Current Score: {clickedIds.length}</div>
+            <div>Total Cards: {onePieceImagesMedium.length}</div>
           </div>
         )}
-        {selectedLevel === 'easy' && gameOver && null}
-        {selectedLevel === 'easy' && win && null}
+        {selectedLevel === 'easy' && renderCards()}
+        {selectedLevel === 'medium' && renderCards()}
       </div>
     </div>
   );
