@@ -13,9 +13,36 @@ const levels = [
 
 const bleachImages = [bleach1, bleach2, bleach3, bleach4, bleach5];
 
+function shuffleArray(array) {
+  const arr = array.slice();
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
 const BleachGame = () => {
   const [selectedLevel, setSelectedLevel] = useState(null);
   const [hoveredLevel, setHoveredLevel] = useState(null);
+  const [cards, setCards] = useState(bleachImages.map((img, i) => ({ img, flipped: false, id: i })));
+  const [isFlipping, setIsFlipping] = useState(false);
+
+  React.useEffect(() => {
+    if (selectedLevel === 'easy') {
+      setCards(bleachImages.map((img, i) => ({ img, flipped: false, id: i })));
+    }
+  }, [selectedLevel]);
+
+  const handleCardClick = (id) => {
+    if (isFlipping) return;
+    setIsFlipping(true);
+    setCards(prev => prev.map(card => ({ ...card, flipped: true })));
+    setTimeout(() => {
+      setCards(prev => shuffleArray(prev.map(card => ({ ...card, flipped: false }))));
+      setIsFlipping(false);
+    }, 1000);
+  };
 
   return (
     <div style={{ minHeight: '100vh', minWidth: '100vw', background: '#2DC7FF', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
@@ -27,6 +54,7 @@ const BleachGame = () => {
         color: '#fff',
         textAlign: 'center',
         minWidth: '340px',
+        position: 'relative',
       }}>
         <h1 style={{ fontFamily: 'One Piece, Impact, Arial', fontSize: '2.5rem', letterSpacing: '2px', color: '#ffe066', textShadow: '2px 2px 8px #000, 0 0 12px #00ffe7' }}>
             CHOOSE YOUR LEVEL
@@ -67,11 +95,12 @@ const BleachGame = () => {
         )}
         {selectedLevel === 'easy' && (
           <div style={{ display: 'flex', justifyContent: 'center', gap: '36px', flexWrap: 'wrap', marginTop: 24 }}>
-            {bleachImages.map((img, i) => (
+            {cards.map((card) => (
               <div
-                key={i}
+                key={card.id}
                 className="flip-card"
                 style={{ width: 200, height: 280, perspective: 800, borderRadius: 16, boxShadow: '0 4px 16px #0006', margin: 0 }}
+                onClick={e => { e.stopPropagation(); handleCardClick(card.id); }}
               >
                 <div
                   className="flip-card-inner"
@@ -79,21 +108,41 @@ const BleachGame = () => {
                     width: '100%',
                     height: '100%',
                     borderRadius: 16,
+                    transition: 'transform 0.5s',
+                    transformStyle: 'preserve-3d',
                     position: 'relative',
+                    transform: card.flipped ? 'rotateY(180deg)' : 'none',
                   }}
                 >
+                  {/* Card Front (Image) */}
                   <div
                     className="flip-card-front"
                     style={{
                       position: 'absolute',
                       width: '100%',
                       height: '100%',
+                      backfaceVisibility: 'hidden',
                       borderRadius: 16,
                       overflow: 'hidden',
                     }}
                   >
-                    <img src={img} alt={`Bleach ${i + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <img src={card.img} alt={`Bleach ${card.id + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   </div>
+                  {/* Card Back (just yellow color) */}
+                  <div
+                    className="flip-card-back"
+                    style={{
+                      position: 'absolute',
+                      width: '100%',
+                      height: '100%',
+                      transform: 'rotateY(180deg)',
+                      background: '#ffe066',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      borderRadius: 16,
+                    }}
+                  ></div>
                 </div>
               </div>
             ))}
