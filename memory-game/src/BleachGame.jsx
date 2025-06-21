@@ -4,6 +4,14 @@ import bleach2 from './assets/Bleach/bleach2.jpg';
 import bleach3 from './assets/Bleach/bleach3.jpg';
 import bleach4 from './assets/Bleach/bleach4.jpg';
 import bleach5 from './assets/Bleach/bleach5.jpg';
+import bleach6 from './assets/Bleach/bleach6.jpg';
+import bleach7 from './assets/Bleach/bleach7.jpg';
+import bleach8 from './assets/Bleach/bleach8.jpg';
+import bleach9 from './assets/Bleach/bleach9.jpg';
+import bleach10 from './assets/Bleach/bleach10.jpg';
+import bleach11 from './assets/Bleach/bleach11.jpg';
+import bleach12 from './assets/Bleach/bleach12.jpg';
+import bleach13 from './assets/Bleach/bleach13.jpg';
 
 const levels = [
   { label: 'Easy', value: 'easy' },
@@ -12,6 +20,7 @@ const levels = [
 ];
 
 const bleachImages = [bleach1, bleach2, bleach3, bleach4, bleach5];
+const bleachImagesMedium = [bleach6, bleach7, bleach8, bleach9, bleach10, bleach11, bleach12, bleach13];
 
 function shuffleArray(array) {
   const arr = array.slice();
@@ -29,10 +38,19 @@ const BleachGame = () => {
   const [selectedLevel, setSelectedLevel] = useState(null);
   const [hoveredLevel, setHoveredLevel] = useState(null);
   const [cards, setCards] = useState(bleachImages.map((img, i) => ({ img, flipped: false, id: i })));
+  const [visibleCards, setVisibleCards] = useState([]);
   const [isFlipping, setIsFlipping] = useState(false);
   const [clickedIds, setClickedIds] = useState([]);
   const [gameOver, setGameOver] = useState(false);
   const [win, setWin] = useState(false);
+
+  // Preload all medium images on mount
+  React.useEffect(() => {
+    bleachImagesMedium.forEach(img => {
+      const image = new window.Image();
+      image.src = img;
+    });
+  }, []);
 
   React.useEffect(() => {
     if (selectedLevel === 'easy') {
@@ -40,6 +58,13 @@ const BleachGame = () => {
       setClickedIds([]);
       setGameOver(false);
       setWin(false);
+      setVisibleCards([]);
+    } else if (selectedLevel === 'medium') {
+      setCards(bleachImagesMedium.map((img, i) => ({ img, flipped: false, id: i })));
+      setClickedIds([]);
+      setGameOver(false);
+      setWin(false);
+      setVisibleCards(shuffleArray(bleachImagesMedium.map((img, i) => ({ img, flipped: false, id: i }))).slice(0, 5));
     }
   }, [selectedLevel]);
 
@@ -51,17 +76,31 @@ const BleachGame = () => {
     }
     const newClicked = [...clickedIds, id];
     setClickedIds(newClicked);
-    if (newClicked.length === cards.length) {
-      setWin(true);
-      return;
-    }
-    setIsFlipping(true);
-    setCards(prev => prev.map(card => ({ ...card, flipped: true })));
-    setTimeout(() => {
-      setCards(prev => shuffleArray(prev.map(card => ({ ...card, flipped: false }))));
+    if (selectedLevel === 'medium') {
+      if (newClicked.length === bleachImagesMedium.length) {
+        setWin(true);
+        return;
+      }
+      setIsFlipping(true);
+      setVisibleCards(prev => prev.map(card => ({ ...card, flipped: true })));
+      setTimeout(() => {
+        const shuffled = shuffleArray(bleachImagesMedium.map((img, i) => ({ img, flipped: false, id: i })));
+        setVisibleCards(shuffled.slice(0, 5));
+        setIsFlipping(false);
+      }, 1000);
+    } else {
+      if (newClicked.length === cards.length) {
+        setWin(true);
+        return;
+      }
+      setIsFlipping(true);
+      setCards(prev => prev.map(card => ({ ...card, flipped: true })));
+      setTimeout(() => {
+        setCards(prev => shuffleArray(prev.map(card => ({ ...card, flipped: false }))));
 
-      setIsFlipping(false);
-    }, 1000);
+        setIsFlipping(false);
+      }, 1000);
+    }
   };
 
   return (
@@ -230,6 +269,69 @@ const BleachGame = () => {
           )}
           {selectedLevel === 'easy' && gameOver && null}
           {selectedLevel === 'easy' && win && null}
+          {selectedLevel === 'medium' && (
+            <div style={{ marginTop: '0px', marginBottom: '10px', color: '#fff', fontWeight: 500, fontSize: '1.2rem', display: 'flex', justifyContent: 'center', gap: '32px' }}>
+              <div>Current Score: {clickedIds.length}</div>
+              <div>Total Cards: {bleachImagesMedium.length}</div>
+            </div>
+          )}
+          {selectedLevel === 'medium' && (
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '36px', flexWrap: 'wrap', marginTop: 24 }}>
+              {visibleCards.map((card) => (
+                <div
+                  key={card.id}
+                  className="flip-card"
+                  style={{ width: 200, height: 280, perspective: 800, borderRadius: 16, boxShadow: '0 4px 16px #0006', margin: 0 }}
+                  onClick={e => { e.stopPropagation(); handleCardClick(card.id); }}
+                >
+                  <div
+                    className="flip-card-inner"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      borderRadius: 16,
+                      transition: 'transform 0.5s',
+                      transformStyle: 'preserve-3d',
+                      position: 'relative',
+                      transform: card.flipped ? 'rotateY(180deg)' : 'none',
+                    }}
+                  >
+                    {/* Card Front (Image) */}
+                    <div
+                      className="flip-card-front"
+                      style={{
+                        position: 'absolute',
+                        width: '100%',
+                        height: '100%',
+                        backfaceVisibility: 'hidden',
+                        borderRadius: 16,
+                        overflow: 'hidden',
+                      }}
+                    >
+                      <img src={card.img} alt={`Bleach ${card.id + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    </div>
+                    {/* Card Back (just yellow color) */}
+                    <div
+                      className="flip-card-back"
+                      style={{
+                        position: 'absolute',
+                        width: '100%',
+                        height: '100%',
+                        transform: 'rotateY(180deg)',
+                        background: '#ffe066',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        borderRadius: 16,
+                      }}
+                    ></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+          {selectedLevel === 'medium' && gameOver && null}
+          {selectedLevel === 'medium' && win && null}
         </div>
       </div>
     </>
