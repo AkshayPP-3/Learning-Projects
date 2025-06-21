@@ -227,12 +227,8 @@ const MhaGame = () => {
               ))}
             </div>
           )}
-          {selectedLevel === 'easy' && gameOver && (
-            <div style={{ color: 'red', fontWeight: 700, fontSize: '1.3rem', marginBottom: 8 }}>You lost! Try again.</div>
-          )}
-          {selectedLevel === 'easy' && win && (
-            <div style={{ color: '#ffe066', fontWeight: 700, fontSize: '1.3rem', marginBottom: 8 }}>You win! Great memory!</div>
-          )}
+          {selectedLevel === 'easy' && gameOver && null}
+          {selectedLevel === 'easy' && win && null}
         </div>
       </div>
     </>

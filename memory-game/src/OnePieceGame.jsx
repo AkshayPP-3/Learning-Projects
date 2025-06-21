@@ -242,6 +242,8 @@ const OnePieceGame = () => {
             ))}
           </div>
         )}
+        {selectedLevel === 'easy' && gameOver && null}
+        {selectedLevel === 'easy' && win && null}
       </div>
     </div>
   );
