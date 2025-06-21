@@ -12,6 +12,18 @@ import bleach10 from './assets/Bleach/bleach10.jpg';
 import bleach11 from './assets/Bleach/bleach11.jpg';
 import bleach12 from './assets/Bleach/bleach12.jpg';
 import bleach13 from './assets/Bleach/bleach13.jpg';
+import bleach14 from './assets/Bleach/bleach14.jpg';
+import bleach15 from './assets/Bleach/bleach15.jpg';
+import bleach16 from './assets/Bleach/bleach16.jpg';
+import bleach17 from './assets/Bleach/bleach17.jpg';
+import bleach18 from './assets/Bleach/bleach18.jpg';
+import bleach19 from './assets/Bleach/bleach19.jpg';
+import bleach20 from './assets/Bleach/bleach20.jpg';
+import bleach21 from './assets/Bleach/bleach21.jpg';
+import bleach22 from './assets/Bleach/bleach22.jpg';
+import bleach23 from './assets/Bleach/bleach23.jpg';
+import bleach24 from './assets/Bleach/bleach24.jpg';
+import bleach25 from './assets/Bleach/bleach25.jpg';
 
 const levels = [
   { label: 'Easy', value: 'easy' },
@@ -21,6 +33,10 @@ const levels = [
 
 const bleachImages = [bleach1, bleach2, bleach3, bleach4, bleach5];
 const bleachImagesMedium = [bleach6, bleach7, bleach8, bleach9, bleach10, bleach11, bleach12, bleach13];
+const bleachImagesHard = [
+  bleach14, bleach15, bleach16, bleach17, bleach18, bleach19,
+  bleach20, bleach21, bleach22, bleach23, bleach24, bleach25
+];
 
 function shuffleArray(array) {
   const arr = array.slice();
@@ -44,9 +60,13 @@ const BleachGame = () => {
   const [gameOver, setGameOver] = useState(false);
   const [win, setWin] = useState(false);
 
-  // Preload all medium images on mount
+  // Preload all medium and hard images on mount
   React.useEffect(() => {
     bleachImagesMedium.forEach(img => {
+      const image = new window.Image();
+      image.src = img;
+    });
+    bleachImagesHard.forEach(img => {
       const image = new window.Image();
       image.src = img;
     });
@@ -65,6 +85,12 @@ const BleachGame = () => {
       setGameOver(false);
       setWin(false);
       setVisibleCards(shuffleArray(bleachImagesMedium.map((img, i) => ({ img, flipped: false, id: i }))).slice(0, 5));
+    } else if (selectedLevel === 'hard') {
+      setCards(bleachImagesHard.map((img, i) => ({ img, flipped: false, id: i })));
+      setClickedIds([]);
+      setGameOver(false);
+      setWin(false);
+      setVisibleCards(shuffleArray(bleachImagesHard.map((img, i) => ({ img, flipped: false, id: i }))).slice(0, 5));
     }
   }, [selectedLevel]);
 
@@ -85,6 +111,18 @@ const BleachGame = () => {
       setVisibleCards(prev => prev.map(card => ({ ...card, flipped: true })));
       setTimeout(() => {
         const shuffled = shuffleArray(bleachImagesMedium.map((img, i) => ({ img, flipped: false, id: i })));
+        setVisibleCards(shuffled.slice(0, 5));
+        setIsFlipping(false);
+      }, 1000);
+    } else if (selectedLevel === 'hard') {
+      if (newClicked.length === bleachImagesHard.length) {
+        setWin(true);
+        return;
+      }
+      setIsFlipping(true);
+      setVisibleCards(prev => prev.map(card => ({ ...card, flipped: true })));
+      setTimeout(() => {
+        const shuffled = shuffleArray(bleachImagesHard.map((img, i) => ({ img, flipped: false, id: i })));
         setVisibleCards(shuffled.slice(0, 5));
         setIsFlipping(false);
       }, 1000);
@@ -332,6 +370,69 @@ const BleachGame = () => {
           )}
           {selectedLevel === 'medium' && gameOver && null}
           {selectedLevel === 'medium' && win && null}
+          {selectedLevel === 'hard' && (
+            <div style={{ marginTop: '0px', marginBottom: '10px', color: '#fff', fontWeight: 500, fontSize: '1.2rem', display: 'flex', justifyContent: 'center', gap: '32px' }}>
+              <div>Current Score: {clickedIds.length}</div>
+              <div>Total Cards: {bleachImagesHard.length}</div>
+            </div>
+          )}
+          {selectedLevel === 'hard' && (
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '36px', flexWrap: 'wrap', marginTop: 24 }}>
+              {visibleCards.map((card) => (
+                <div
+                  key={card.id}
+                  className="flip-card"
+                  style={{ width: 200, height: 280, perspective: 800, borderRadius: 16, boxShadow: '0 4px 16px #0006', margin: 0 }}
+                  onClick={e => { e.stopPropagation(); handleCardClick(card.id); }}
+                >
+                  <div
+                    className="flip-card-inner"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      borderRadius: 16,
+                      transition: 'transform 0.5s',
+                      transformStyle: 'preserve-3d',
+                      position: 'relative',
+                      transform: card.flipped ? 'rotateY(180deg)' : 'none',
+                    }}
+                  >
+                    {/* Card Front (Image) */}
+                    <div
+                      className="flip-card-front"
+                      style={{
+                        position: 'absolute',
+                        width: '100%',
+                        height: '100%',
+                        backfaceVisibility: 'hidden',
+                        borderRadius: 16,
+                        overflow: 'hidden',
+                      }}
+                    >
+                      <img src={card.img} alt={`Bleach ${card.id + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    </div>
+                    {/* Card Back (just yellow color) */}
+                    <div
+                      className="flip-card-back"
+                      style={{
+                        position: 'absolute',
+                        width: '100%',
+                        height: '100%',
+                        transform: 'rotateY(180deg)',
+                        background: '#ffe066',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        borderRadius: 16,
+                      }}
+                    ></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+          {selectedLevel === 'hard' && gameOver && null}
+          {selectedLevel === 'hard' && win && null}
         </div>
       </div>
     </>
