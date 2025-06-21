@@ -58,16 +58,17 @@ const OnePieceGame = () => {
       setWin(false);
     }
   }, [selectedLevel]);
-
+// You lost 
   const handleCardClick = (id) => {
     if (isFlipping || gameOver || win) return;
     if (clickedIds.includes(id)) {
       setGameOver(true);
       return;
     }
+// You won
     const newClicked = [...clickedIds, id];
     setClickedIds(newClicked);
-    setScore(newClicked.length);
+    setScore(newClicked.length); // Update score 
     if (newClicked.length === onePieceImages.length) {
       setWin(true);
       return;
@@ -77,7 +78,7 @@ const OnePieceGame = () => {
     setTimeout(() => {
       setCards(prev => shuffleArray(prev.map(card => ({ ...card, flipped: false }))));
       setIsFlipping(false);
-    }, 1000);
+    }, 1000); // Flip duration
   };
 
   return (
