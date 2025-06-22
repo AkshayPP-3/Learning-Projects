@@ -57,7 +57,7 @@ function HowToPlayButton({ onClick }) {
       onMouseLeave={() => setHover(false)}
       style={{
         marginLeft: '32px',
-        background: hover ? '#fff' : '#232526',
+        background: hover ? '#fff' : 'rgba(0,0,0,0.7)',
         border: '2px solid #fff',
         borderRadius: '50%',
         width: '48px',
@@ -68,10 +68,10 @@ function HowToPlayButton({ onClick }) {
         cursor: 'pointer',
         fontSize: '2rem',
         color: hover ? '#232526' : '#fff',
-        boxShadow: hover ? '0 4px 16px #23252644' : '0 2px 8px #fff4',
+        boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
         position: 'relative',
         zIndex: 3,
-        transition: 'background 0.2s, color 0.2s, box-shadow 0.2s',
+        transition: 'background 0.2s, color 0.2s',
       }}
     >
       ?
@@ -92,55 +92,58 @@ function HowToPlayModal({ onClose }) {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      fontFamily: `'Press Start 2P', 'VT323', 'Courier New', Courier, monospace`, // Retro game font
     }}>
       <div style={{
-        background: 'linear-gradient(135deg, #232526 0%, #414345 100%)',
+        background: '#181818',
         color: '#fff',
-        borderRadius: '20px',
-        padding: '36px 32px 28px 32px',
-        maxWidth: '440px',
-        width: '92vw',
-        boxShadow: '0 8px 32px rgba(0,0,0,0.7)',
+        borderRadius: '16px',
+        padding: '32px 28px 24px 28px',
+        maxWidth: '420px',
+        width: '90vw',
+        boxShadow: '0 4px 24px rgba(0,0,0,0.5)',
+        fontFamily: `'Press Start 2P', 'VT323', 'Courier New', Courier, monospace`,
         fontSize: '0.9rem',
         position: 'relative',
         textAlign: 'left',
-        fontFamily: 'inherit',
-        letterSpacing: '0.01em',
-        lineHeight: 1.7,
       }}>
         <button
           onClick={onClose}
           aria-label="Close How to Play"
+          onMouseEnter={e => e.currentTarget.style.color = '#ffb347'}
+          onMouseLeave={e => e.currentTarget.style.color = '#fff'}
           style={{
             position: 'absolute',
             top: '12px',
-            right: '18px',
+            right: '16px',
             background: 'none',
             border: 'none',
             color: '#fff',
-            fontSize: '1.7rem',
+            fontSize: '1.1rem',
             cursor: 'pointer',
             fontWeight: 700,
-            fontFamily: 'inherit',
-            transition: 'color 0.2s',
+            fontFamily: `'Press Start 2P', 'VT323', 'Courier New', Courier, monospace`,
+            transition: 'color 0.2s, transform 0.3s cubic-bezier(.68,-0.55,.27,1.55)',
+            outline: 'none',
           }}
-          onMouseOver={e => e.currentTarget.style.color = '#ffb347'}
-          onMouseOut={e => e.currentTarget.style.color = '#fff'}
+          onMouseDown={e => e.currentTarget.style.transform = 'scale(0.7) rotate(180deg)'}
+          onMouseUp={e => e.currentTarget.style.transform = 'scale(1) rotate(0deg)'}
+          onMouseOut={e => e.currentTarget.style.transform = 'scale(1) rotate(0deg)'}
         >
           ×
         </button>
-        <h2 style={{ fontSize: '1.5rem', marginBottom: '20px', letterSpacing: '2px', textAlign: 'center', fontFamily: 'inherit', fontWeight: 700, color: '#ffb347', textShadow: '0 2px 8px #0008' }}>How to Play</h2>
-        <ul style={{ paddingLeft: '1.2em', marginBottom: 0, fontFamily: 'inherit', fontWeight: 500 }}>
-          <li>Choose your favorite anime memory game.</li>
-          <li>Pick a level: Easy, Medium, or Hard.</li>
-          <li>Flip two cards at a time to find matching pairs.</li>
-          <li>Match all pairs before running out of tries to win!</li>
-          <li>Each anime has unique cards and themed win/lose popups.</li>
-          <li>Advance to the next level after winning Easy or Medium.</li>
+        <h2 style={{ fontSize: '1.02rem', marginBottom: '13px', letterSpacing: '1.2px', textAlign: 'center', color: '#ffb347', textShadow: '0 2px 8px #0008' }}>How to Play</h2>
+        <ul style={{ paddingLeft: '1.1em', marginBottom: 0, fontSize: '0.82rem', lineHeight: 1.5, color: '#ffe082', listStyleType: 'disc' }}>
+          <li style={{ marginBottom: '4px' }}>Click the <b>"PLAY"</b> button to start the game.</li>
+          <li style={{ marginBottom: '4px' }}>Choose your favorite anime/game from the list.</li>
+          <li style={{ marginBottom: '4px' }}>Select a level (Easy, Medium, Hard) for your favorite anime.</li>
+          <li style={{ marginBottom: '4px' }}>Click each card only once. <span style={{ color: '#ff7675' }}>If you click the same card twice, you lose!</span></li>
+          <li style={{ marginBottom: '4px' }}>Medium/Hard: Only 5 cards are visible at a time, and they shuffle after every click.</li>
+          <li style={{ marginBottom: '4px' }}>Try to click all unique cards to win and advance to the next level.</li>
+          <li style={{ marginBottom: '4px' }}>Each anime/game has its own themed win/lose popups and progression.</li>
+          <li>Use the <b>"Next Level"</b> button after a win to keep playing!</li>
         </ul>
-        <div style={{ marginTop: '22px', fontSize: '1.05rem', color: '#ffe082', textAlign: 'center', fontFamily: 'inherit', fontWeight: 600, textShadow: '0 1px 4px #0006' }}>
-          Good luck, and have fun testing your anime memory!
+        <div style={{ marginTop: 10, fontSize: '0.8rem', color: 'orange', textAlign: 'center', fontWeight: 600, textShadow: '0 1px 4px #0006' }}>
+          Good luck, and have fun testing your memory with your favorite anime heroes!
         </div>
       </div>
     </div>
