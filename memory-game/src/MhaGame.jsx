@@ -172,15 +172,15 @@ const MhaGame = () => {
             <div style={{ color: gameOver ? 'red' : '#ffe066', fontWeight: 800, fontSize: '2rem', marginBottom: 12, textAlign: 'center', lineHeight: 1.4 }}>
               {selectedLevel === 'easy' ? (
                 gameOver
-                  ? 'Defeated this round! Even Deku stumbles. Try again, future Hero!'
-                  : 'You aced the easy mode! You’re on your way to becoming a Pro Hero!'
+                  ? 'You lost this round! Every hero faces setbacks. Try again and keep training!'
+                  : 'You completed easy mode! Your hero journey is off to a great start!'
               ) : selectedLevel === 'medium' ? (
                 gameOver
-                  ? 'Defeated this round! Even Deku stumbles. Try again, future Hero!'
+                  ? 'You lost in the U.A. Training! The challenge is tough, but you can do it, hero!'
                   : 'You conquered medium! Your Quirk is memory!'
               ) : (
                 gameOver
-                  ? 'Defeated this round! Even Deku stumbles. Try again, future Hero!'
+                  ? 'Defeated at the Pro Hero Exam! Only the best make it. Sharpen your memory and try again!'
                   : 'Victory! You’ve got a memory as strong as All Might!'
               )}
             </div>
