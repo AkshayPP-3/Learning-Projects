@@ -175,6 +175,10 @@ const BleachGame = () => {
                 gameOver
                   ? 'Hollow ambush! Even Ichigo needs more training. Try again!'
                   : 'You protected Karakura Town! Easy mode mastered, Soul Reaper!'
+              ) : selectedLevel === 'medium' ? (
+                gameOver
+                  ? 'Defeated! Even Ichigo loses sometimes. Try again, Soul Reaper!'
+                  : 'You mastered Bankai! Medium mode complete, Captain!'
               ) : (
                 gameOver
                   ? 'Defeated! Even Ichigo loses sometimes. Try again, Soul Reaper!'
@@ -209,8 +213,36 @@ const BleachGame = () => {
                  Next Level
               </button>
             ) : null}
+            {selectedLevel === 'medium' && win ? (
+              <button
+                onClick={() => {
+                  setSelectedLevel('hard');
+                  setCards(bleachImagesHard.map((img, i) => ({ img, flipped: false, id: i })));
+                  setClickedIds([]);
+                  setGameOver(false);
+                  setWin(false);
+                  setVisibleCards(shuffleArray(bleachImagesHard.map((img, i) => ({ img, flipped: false, id: i }))).slice(0, 5));
+                }}
+                style={{
+                  marginTop: 8,
+                  padding: '10px 32px',
+                  fontSize: '1.1rem',
+                  borderRadius: 8,
+                  border: 'none',
+                  background: '#00ffe7',
+                  color: '#222',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  boxShadow: '0 2px 8px #0006',
+                  transition: 'all 0.2s',
+                  marginBottom: 8,
+                }}
+              >
+                Next Level
+              </button>
+            ) : null}
             <button onClick={() => {
-              setCards(bleachImages.map((img, i) => ({ img, flipped: false, id: i })));
+              setCards(bleachImages.map((img, i) => ({ img, flipped: false, id: i }))); 
               setClickedIds([]);
               setGameOver(false);
               setWin(false);
