@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import bgVideo from './assets/Background/animated-video-for-background.mp4';
 import { useNavigate } from 'react-router-dom';
 
 function HomePage() {
+  const [showHowTo, setShowHowTo] = useState(false);
   useEffect(() => {
     document.body.style.background = 'none';
     document.body.style.backgroundColor = '#000';
@@ -36,8 +37,106 @@ function HomePage() {
         Your browser does not support the video tag.
       </video>
       <div className="main" style={{ position: 'relative', zIndex: 1, height: '100vh', width: '100vw', display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
-        <div className="home-page" style={{ display: 'flex', alignItems: 'center', height: '100vh', marginLeft: '150px' }}>
+        <div className="home-page" style={{ display: 'flex', alignItems: 'center', height: '100vh', marginLeft: '150px', position: 'relative' }}>
           <AnimatedPlayButton />
+          <HowToPlayButton onClick={() => setShowHowTo(v => !v)} />
+        </div>
+        {showHowTo && <HowToPlayModal onClose={() => setShowHowTo(false)} />}
+      </div>
+    </div>
+  );
+}
+
+function HowToPlayButton({ onClick }) {
+  return (
+    <button
+      aria-label="How to Play"
+      onClick={onClick}
+      style={{
+        marginLeft: '32px',
+        background: 'rgba(0,0,0,0.7)',
+        border: '2px solid #fff',
+        borderRadius: '50%',
+        width: '48px',
+        height: '48px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        cursor: 'pointer',
+        fontSize: '2rem',
+        color: '#fff',
+        boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+        position: 'relative',
+        zIndex: 3,
+      }}
+    >
+      ?
+    </button>
+  );
+}
+
+function HowToPlayModal({ onClose }) {
+  return (
+    <div style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      width: '100vw',
+      height: '100vh',
+      background: 'rgba(0,0,0,0.7)',
+      zIndex: 1000,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontFamily: `'Press Start 2P', 'VT323', 'Courier New', Courier, monospace`, // Retro game font
+    }}>
+      <div style={{
+        background: 'linear-gradient(135deg, #232526 0%, #414345 100%)',
+        color: '#fff',
+        borderRadius: '20px',
+        padding: '36px 32px 28px 32px',
+        maxWidth: '440px',
+        width: '92vw',
+        boxShadow: '0 8px 32px rgba(0,0,0,0.7)',
+        fontSize: '0.9rem',
+        position: 'relative',
+        textAlign: 'left',
+        fontFamily: 'inherit',
+        letterSpacing: '0.01em',
+        lineHeight: 1.7,
+      }}>
+        <button
+          onClick={onClose}
+          aria-label="Close How to Play"
+          style={{
+            position: 'absolute',
+            top: '12px',
+            right: '18px',
+            background: 'none',
+            border: 'none',
+            color: '#fff',
+            fontSize: '1.7rem',
+            cursor: 'pointer',
+            fontWeight: 700,
+            fontFamily: 'inherit',
+            transition: 'color 0.2s',
+          }}
+          onMouseOver={e => e.currentTarget.style.color = '#ffb347'}
+          onMouseOut={e => e.currentTarget.style.color = '#fff'}
+        >
+          ×
+        </button>
+        <h2 style={{ fontSize: '1.5rem', marginBottom: '20px', letterSpacing: '2px', textAlign: 'center', fontFamily: 'inherit', fontWeight: 700, color: '#ffb347', textShadow: '0 2px 8px #0008' }}>How to Play</h2>
+        <ul style={{ paddingLeft: '1.2em', marginBottom: 0, fontFamily: 'inherit', fontWeight: 500 }}>
+          <li>Choose your favorite anime memory game.</li>
+          <li>Pick a level: Easy, Medium, or Hard.</li>
+          <li>Flip two cards at a time to find matching pairs.</li>
+          <li>Match all pairs before running out of tries to win!</li>
+          <li>Each anime has unique cards and themed win/lose popups.</li>
+          <li>Advance to the next level after winning Easy or Medium.</li>
+        </ul>
+        <div style={{ marginTop: '22px', fontSize: '1.05rem', color: '#ffe082', textAlign: 'center', fontFamily: 'inherit', fontWeight: 600, textShadow: '0 1px 4px #0006' }}>
+          Good luck, and have fun testing your anime memory!
         </div>
       </div>
     </div>
