@@ -99,6 +99,20 @@ const MhaGame = () => {
       setGameOver(true);
       return;
     }
+    // Helper to always include at least one unclicked card in the visible set
+    function getVisibleWithUnclicked(allCards, clicked, count) {
+      const unclicked = allCards.filter(card => !clicked.includes(card.id));
+      let pool = shuffleArray(allCards);
+      // If all cards are clicked, just return the first N
+      if (unclicked.length === 0) return pool.slice(0, count);
+      // Ensure at least one unclicked card is present
+      const chosenUnclicked = shuffleArray(unclicked)[0];
+      // Remove chosenUnclicked from pool to avoid duplicates
+      pool = pool.filter(card => card.id !== chosenUnclicked.id);
+      // Take (count-1) from pool, then add the chosenUnclicked
+      const rest = pool.slice(0, count - 1);
+      return shuffleArray([chosenUnclicked, ...rest]);
+    }
     const newClicked = [...clickedIds, id];
     setClickedIds(newClicked);
     if (selectedLevel === 'medium') {
@@ -109,8 +123,8 @@ const MhaGame = () => {
       setIsFlipping(true);
       setVisibleCards(prev => prev.map(card => ({ ...card, flipped: true })));
       setTimeout(() => {
-        const shuffled = shuffleArray(mhaImagesMedium.map((img, i) => ({ img, flipped: false, id: i })));
-        setVisibleCards(shuffled.slice(0, 5));
+        const allCards = mhaImagesMedium.map((img, i) => ({ img, flipped: false, id: i }));
+        setVisibleCards(getVisibleWithUnclicked(allCards, newClicked, 5));
         setIsFlipping(false);
       }, 1000);
     } else if (selectedLevel === 'hard') {
@@ -121,8 +135,8 @@ const MhaGame = () => {
       setIsFlipping(true);
       setVisibleCards(prev => prev.map(card => ({ ...card, flipped: true })));
       setTimeout(() => {
-        const shuffled = shuffleArray(mhaImagesHard.map((img, i) => ({ img, flipped: false, id: i })));
-        setVisibleCards(shuffled.slice(0, 5));
+        const allCards = mhaImagesHard.map((img, i) => ({ img, flipped: false, id: i }));
+        setVisibleCards(getVisibleWithUnclicked(allCards, newClicked, 5));
         setIsFlipping(false);
       }, 1000);
     } else {
