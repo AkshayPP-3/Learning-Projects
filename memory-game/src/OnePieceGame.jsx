@@ -311,11 +311,11 @@ const OnePieceGame = () => {
                     : 'You found all the treasure! Easy mode mastered, Straw Hat!'
                 ) : selectedLevel === 'medium' ? (
                   gameOver
-                    ? 'Defeated this round! Even Luffy stumbles. Try again, future Pirate King!'
-                    : 'You conquered the Grand Line! Medium mode complete, Nakama!'
+                    ? 'You lost in the Grand Line! The seas are tough, but you can do it, crew member!'
+                    : 'You conquered the Grand Line! Medium mode complete!'
                 ) : (
                   gameOver
-                    ? 'Defeated this round! Even Luffy stumbles. Try again, future Pirate King!'
+                    ? 'Defeated at the New World! Only the strongest survive here. Sharpen your memory and try again!'
                     : 'Victory! You’ve got a memory as strong as Luffy’s will!'
                 )}
               </div>
