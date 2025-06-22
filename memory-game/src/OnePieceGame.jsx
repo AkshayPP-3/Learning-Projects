@@ -309,6 +309,10 @@ const OnePieceGame = () => {
                   gameOver
                     ? 'Defeated this round! Even Luffy stumbles. Try again, future Pirate King!'
                     : 'You found all the treasure! Easy mode mastered, Straw Hat!'
+                ) : selectedLevel === 'medium' ? (
+                  gameOver
+                    ? 'Defeated this round! Even Luffy stumbles. Try again, future Pirate King!'
+                    : 'You conquered the Grand Line! Medium mode complete, Nakama!'
                 ) : (
                   gameOver
                     ? 'Defeated this round! Even Luffy stumbles. Try again, future Pirate King!'
@@ -326,6 +330,36 @@ const OnePieceGame = () => {
                     setIsFlipping(false);
                     setScore(0);
                     setVisibleCards(shuffleArray(onePieceImagesMedium.map((img, i) => ({ img, flipped: false, id: i }))).slice(0, 5));
+                  }}
+                  style={{
+                    marginTop: 8,
+                    padding: '10px 32px',
+                    fontSize: '1.1rem',
+                    borderRadius: 8,
+                    border: 'none',
+                    background: '#00ffe7',
+                    color: '#222',
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                    boxShadow: '0 2px 8px #0006',
+                    transition: 'all 0.2s',
+                    marginBottom: 8,
+                  }}
+                >
+                  Next Level
+                </button>
+              ) : null}
+              {selectedLevel === 'medium' && win ? (
+                <button
+                  onClick={() => {
+                    setSelectedLevel('hard');
+                    setCards(onePieceImagesHard.map((img, i) => ({ img, flipped: false, id: i })));
+                    setClickedIds([]);
+                    setGameOver(false);
+                    setWin(false);
+                    setIsFlipping(false);
+                    setScore(0);
+                    setVisibleCards(shuffleArray(onePieceImagesHard.map((img, i) => ({ img, flipped: false, id: i }))).slice(0, 5));
                   }}
                   style={{
                     marginTop: 8,
