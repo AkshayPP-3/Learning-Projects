@@ -170,10 +170,44 @@ const MhaGame = () => {
           }}>
             <img src={gameOver ? loseGif : winGif} alt={gameOver ? 'Game Over' : 'You Win'} style={{ width: 180, height: 120, objectFit: 'cover', borderRadius: 12, marginBottom: 18, boxShadow: '0 2px 16px #0008' }} />
             <div style={{ color: gameOver ? 'red' : '#ffe066', fontWeight: 800, fontSize: '2rem', marginBottom: 12, textAlign: 'center', lineHeight: 1.4 }}>
-              {gameOver
-                ? 'Defeated this round! Even Deku stumbles. Try again, future Hero!'
-                : 'Victory! You’ve got a memory as strong as All Might!'}
+              {selectedLevel === 'easy' ? (
+                gameOver
+                  ? 'Defeated this round! Even Deku stumbles. Try again, future Hero!'
+                  : 'You aced the easy mode! You’re on your way to becoming a Pro Hero!'
+              ) : (
+                gameOver
+                  ? 'Defeated this round! Even Deku stumbles. Try again, future Hero!'
+                  : 'Victory! You’ve got a memory as strong as All Might!'
+              )}
             </div>
+            {selectedLevel === 'easy' && win ? (
+              <button
+                onClick={() => {
+                  setSelectedLevel('medium');
+                  setCards(mhaImagesMedium.map((img, i) => ({ img, flipped: false, id: i })));
+                  setClickedIds([]);
+                  setGameOver(false);
+                  setWin(false);
+                  setVisibleCards(shuffleArray(mhaImagesMedium.map((img, i) => ({ img, flipped: false, id: i }))).slice(0, 5));
+                }}
+                style={{
+                  marginTop: 8,
+                  padding: '10px 32px',
+                  fontSize: '1.1rem',
+                  borderRadius: 8,
+                  border: 'none',
+                  background: '#00ffe7',
+                  color: '#222',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  boxShadow: '0 2px 8px #0006',
+                  transition: 'all 0.2s',
+                  marginBottom: 8,
+                }}
+              >
+                Next Level
+              </button>
+            ) : null}
             <button onClick={() => {
               setCards(mhaImages.map((img, i) => ({ img, flipped: false, id: i })));
               setClickedIds([]);
