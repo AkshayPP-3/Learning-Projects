@@ -134,7 +134,7 @@ function HowToPlayModal({ onClose }) {
         <h2 style={{ fontSize: '1.02rem', marginBottom: '13px', letterSpacing: '1.2px', textAlign: 'center', color: '#ffb347', textShadow: '0 2px 8px #0008' }}>How to Play</h2>
         <ul style={{ paddingLeft: '1.1em', marginBottom: 0, fontSize: '0.82rem', lineHeight: 1.5, color: '#ffe082', listStyleType: 'disc' }}>
           <li style={{ marginBottom: '4px' }}>Click the <b>"PLAY"</b> button to start the game.</li>
-          <li style={{ marginBottom: '4px' }}>Choose your favorite anime/game from the list.</li>
+          <li style={{ marginBottom: '4px' }}>Choose your favorite Anime from the list.</li>
           <li style={{ marginBottom: '4px' }}>Select a level (Easy, Medium, Hard) for your favorite anime.</li>
           <li style={{ marginBottom: '4px' }}>Click each card only once. <span style={{ color: '#ff7675' }}>If you click the same card twice, you lose!</span></li>
           <li style={{ marginBottom: '4px' }}>Medium/Hard: Only 5 cards are visible at a time, and they shuffle after every click.</li>
