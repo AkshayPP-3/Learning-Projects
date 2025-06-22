@@ -82,5 +82,3 @@ const bleachData = [
 ];
 
 export default bleachData;
-
-// No unused imports or redundant code found in ImageData1.jsx, preserved all comments
