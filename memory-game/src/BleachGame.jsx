@@ -173,15 +173,15 @@ const BleachGame = () => {
             <div style={{ color: gameOver ? 'red' : '#ffe066', fontWeight: 800, fontSize: '2rem', marginBottom: 12, textAlign: 'center', lineHeight: 1.4 }}>
               {selectedLevel === 'easy' ? (
                 gameOver
-                  ? 'Hollow ambush! Even Ichigo needs more training. Try again!'
-                  : 'You protected Karakura Town! Easy mode mastered, Soul Reaper!'
+                  ? 'You lost this round! Every Soul Reaper needs more training. Try again!'
+                  : 'You protected Karakura Town! Easy mode complete!'
               ) : selectedLevel === 'medium' ? (
                 gameOver
-                  ? 'Defeated! Even Ichigo loses sometimes. Try again, Soul Reaper!'
-                  : 'You mastered Bankai! Medium mode complete, Captain!'
+                  ? 'You lost in the Soul Society challenge! The path is tough, but you can do it!'
+                  : 'You mastered the Soul Society challenge! Medium mode complete!'
               ) : (
                 gameOver
-                  ? 'Defeated! Even Ichigo loses sometimes. Try again, Soul Reaper!'
+                  ? 'Defeated in the final battle! Only the strongest Soul Reapers prevail. Sharpen your memory and try again!'
                   : 'Victory! Your memory is as sharp as Zangetsu!'
               )}
             </div>
