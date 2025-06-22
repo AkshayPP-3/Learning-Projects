@@ -1,26 +1,18 @@
 import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import heroBackground from './assets/Background/hero_background.mp4';
-import onepieceImg from './assets/OnePiece/onepiece1.jpg';
-import dekuVideo from './assets/Background/deku.mp4';
-import ichigoVideo from './assets/Background/ichigo.mp4';
-import luffyVideo from './assets/Background/luffy.mp4';
 
 const animeCards = [
   {
     title: 'ONE PIECE',
-    video: luffyVideo,
-    alt: 'One Piece',
+    video: '/assets/Background/luffy.mp4',
   },
   {
     title: 'MY HERO ACADEMIA',
-    video: dekuVideo,
-    alt: 'Deku',
+    video: '/assets/Background/deku.mp4',
   },
   {
     title: 'BLEACH',
-    video: ichigoVideo,
-    alt: 'Ichigo',
+    video: '/assets/Background/ichigo.mp4',
   },
 ];
 
@@ -94,7 +86,7 @@ const HeroPage = () => {
           zIndex: -1
         }}
       >
-        <source src={heroBackground} type="video/mp4" />
+        <source src={'/assets/Background/hero_background.mp4'} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       <div style={{ position: 'relative', zIndex: 1, height: '100vh', width: '100vw', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
@@ -164,18 +156,14 @@ const HeroPage = () => {
                     zIndex: 1,
                   }}
                 />
-                {card.video ? (
-                  <video
-                    src={card.video}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    style={{ width: '100%', height: '70%', objectFit: 'cover', borderRadius: '10px 10px 0 0', marginBottom: '0', zIndex: 2 }}
-                  />
-                ) : (
-                  <img src={card.img} alt={card.alt} style={{ width: '100%', height: '70%', objectFit: 'cover', borderRadius: '10px 10px 0 0', marginBottom: '0', zIndex: 2 }} />
-                )}
+                <video
+                  src={card.video}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  style={{ width: '100%', height: '70%', objectFit: 'cover', borderRadius: '10px 10px 0 0', marginBottom: '0', zIndex: 2 }}
+                />
                 <h2 style={{ margin: 0, fontSize: '1.2rem', letterSpacing: '2px', textShadow: '0 2px 8px #000, 0 0 8px #00ffe7', height: '30%', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>{card.title}</h2>
               </button>
             );

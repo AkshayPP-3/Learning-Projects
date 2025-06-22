@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import bgVideo from './assets/Background/animated-video-for-background.mp4';
+// import bgVideo from './assets/Background/animated-video-for-background.mp4';
 import { useNavigate } from 'react-router-dom';
 
 function HomePage() {
@@ -33,7 +33,7 @@ function HomePage() {
           zIndex: -1,
         }}
       >
-        <source src={bgVideo} type="video/mp4" />
+        <source src="/assets/Background/animated-video-for-background.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       <div className="main" style={{ position: 'relative', zIndex: 1, height: '100vh', width: '100vw', display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>

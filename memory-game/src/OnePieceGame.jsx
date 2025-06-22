@@ -1,28 +1,4 @@
 import React, { useState } from 'react';
-import onepiece1 from './assets/OnePiece/onepiece1.jpg';
-import onepiece2 from './assets/OnePiece/onepiece2.jpg';
-import onepiece3 from './assets/OnePiece/onepiece3.jpg';
-import onepiece4 from './assets/OnePiece/onepiece4.jpg';
-import onepiece5 from './assets/OnePiece/onepiece5.jpg';
-import onepiece6 from './assets/OnePiece/onepiece6.jpg';
-import onepiece7 from './assets/OnePiece/onepiece7.jpg';
-import onepiece8 from './assets/OnePiece/onepiece8.jpg';
-import onepiece9 from './assets/OnePiece/onepiece9.jpg';
-import onepiece10 from './assets/OnePiece/onepiece10.jpg';
-import onepiece11 from './assets/OnePiece/onepiece11.jpg';
-import onepiece12 from './assets/OnePiece/onepiece12.jpg';
-import onepiece13 from './assets/OnePiece/onepiece13.jpg';
-import onepiece14 from './assets/OnePiece/onepiece14.jpg';
-import onepiece15 from './assets/OnePiece/onepiece15.jpg';
-import onepiece16 from './assets/OnePiece/onepiece16.jpg';
-import onepiece17 from './assets/OnePiece/onepiece17.jpg';
-import onepiece18 from './assets/OnePiece/onepiece18.jpg';
-import onepiece19 from './assets/OnePiece/onepiece19.jpg';
-import onepiece20 from './assets/OnePiece/onepiece20.jpg';
-import onepiece21 from './assets/OnePiece/onepiece21.jpg';
-import onepiece22 from './assets/OnePiece/onepiece22.jpg';
-import onepiece23 from './assets/OnePiece/onepiece23.jpg';
-import onepiece24 from './assets/OnePiece/onepiece24.jpg';
 
 const levels = [
   { label: 'Easy', value: 'easy' },
@@ -30,11 +6,15 @@ const levels = [
   { label: 'Hard', value: 'hard' },
 ];
 
-const onePieceImages = [onepiece1, onepiece2, onepiece3, onepiece4, onepiece5];
-const onePieceImagesMedium = [onepiece6, onepiece7, onepiece8, onepiece9, onepiece10, onepiece11, onepiece12, onepiece13];
+const onePieceImages = [
+  '/assets/OnePiece/onepiece1.jpg', '/assets/OnePiece/onepiece2.jpg', '/assets/OnePiece/onepiece3.jpg', '/assets/OnePiece/onepiece4.jpg', '/assets/OnePiece/onepiece5.jpg'
+];
+const onePieceImagesMedium = [
+  '/assets/OnePiece/onepiece6.jpg', '/assets/OnePiece/onepiece7.jpg', '/assets/OnePiece/onepiece8.jpg', '/assets/OnePiece/onepiece9.jpg', '/assets/OnePiece/onepiece10.jpg', '/assets/OnePiece/onepiece11.jpg', '/assets/OnePiece/onepiece12.jpg', '/assets/OnePiece/onepiece13.jpg'
+];
 const onePieceImagesHard = [
-  onepiece14, onepiece15, onepiece16, onepiece17, onepiece18, onepiece19,
-  onepiece20, onepiece21, onepiece22, onepiece23, onepiece24
+  '/assets/OnePiece/onepiece14.jpg', '/assets/OnePiece/onepiece15.jpg', '/assets/OnePiece/onepiece16.jpg', '/assets/OnePiece/onepiece17.jpg', '/assets/OnePiece/onepiece18.jpg', '/assets/OnePiece/onepiece19.jpg',
+  '/assets/OnePiece/onepiece20.jpg', '/assets/OnePiece/onepiece21.jpg', '/assets/OnePiece/onepiece22.jpg', '/assets/OnePiece/onepiece23.jpg', '/assets/OnePiece/onepiece24.jpg'
 ];
 
 // shuffle

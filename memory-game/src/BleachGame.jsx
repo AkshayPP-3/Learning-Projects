@@ -1,29 +1,4 @@
 import React, { useState } from 'react';
-import bleach1 from './assets/Bleach/bleach1.jpg';
-import bleach2 from './assets/Bleach/bleach2.jpg';
-import bleach3 from './assets/Bleach/bleach3.jpg';
-import bleach4 from './assets/Bleach/bleach4.jpg';
-import bleach5 from './assets/Bleach/bleach5.jpg';
-import bleach6 from './assets/Bleach/bleach6.jpg';
-import bleach7 from './assets/Bleach/bleach7.jpg';
-import bleach8 from './assets/Bleach/bleach8.jpg';
-import bleach9 from './assets/Bleach/bleach9.jpg';
-import bleach10 from './assets/Bleach/bleach10.jpg';
-import bleach11 from './assets/Bleach/bleach11.jpg';
-import bleach12 from './assets/Bleach/bleach12.jpg';
-import bleach13 from './assets/Bleach/bleach13.jpg';
-import bleach14 from './assets/Bleach/bleach14.jpg';
-import bleach15 from './assets/Bleach/bleach15.jpg';
-import bleach16 from './assets/Bleach/bleach16.jpg';
-import bleach17 from './assets/Bleach/bleach17.jpg';
-import bleach18 from './assets/Bleach/bleach18.jpg';
-import bleach19 from './assets/Bleach/bleach19.jpg';
-import bleach20 from './assets/Bleach/bleach20.jpg';
-import bleach21 from './assets/Bleach/bleach21.jpg';
-import bleach22 from './assets/Bleach/bleach22.jpg';
-import bleach23 from './assets/Bleach/bleach23.jpg';
-import bleach24 from './assets/Bleach/bleach24.jpg';
-import bleach25 from './assets/Bleach/bleach25.jpg';
 
 const levels = [
   { label: 'Easy', value: 'easy' },
@@ -31,11 +6,15 @@ const levels = [
   { label: 'Hard', value: 'hard' },
 ];
 
-const bleachImages = [bleach1, bleach2, bleach3, bleach4, bleach5];
-const bleachImagesMedium = [bleach6, bleach7, bleach8, bleach9, bleach10, bleach11, bleach12, bleach13];
+const bleachImages = [
+  '/assets/Bleach/bleach1.jpg', '/assets/Bleach/bleach2.jpg', '/assets/Bleach/bleach3.jpg', '/assets/Bleach/bleach4.jpg', '/assets/Bleach/bleach5.jpg'
+];
+const bleachImagesMedium = [
+  '/assets/Bleach/bleach6.jpg', '/assets/Bleach/bleach7.jpg', '/assets/Bleach/bleach8.jpg', '/assets/Bleach/bleach9.jpg', '/assets/Bleach/bleach10.jpg', '/assets/Bleach/bleach11.jpg', '/assets/Bleach/bleach12.jpg', '/assets/Bleach/bleach13.jpg'
+];
 const bleachImagesHard = [
-  bleach14, bleach15, bleach16, bleach17, bleach18, bleach19,
-  bleach20, bleach21, bleach22, bleach23, bleach24, bleach25
+  '/assets/Bleach/bleach14.jpg', '/assets/Bleach/bleach15.jpg', '/assets/Bleach/bleach16.jpg', '/assets/Bleach/bleach17.jpg', '/assets/Bleach/bleach18.jpg', '/assets/Bleach/bleach19.jpg',
+  '/assets/Bleach/bleach20.jpg', '/assets/Bleach/bleach21.jpg', '/assets/Bleach/bleach22.jpg', '/assets/Bleach/bleach23.jpg', '/assets/Bleach/bleach24.jpg', '/assets/Bleach/bleach25.jpg'
 ];
 
 function shuffleArray(array) {

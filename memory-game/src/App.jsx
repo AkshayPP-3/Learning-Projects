@@ -6,7 +6,6 @@ import OnePieceGame from './OnePieceGame';
 import MhaGame from './MhaGame';
 import BleachGame from './BleachGame';
 import './App.css';
-import bgMusic from './assets/Audio/guts.mp3';
 
 function LoaderScreen() {
   const navigate = useNavigate();
@@ -21,7 +20,7 @@ function LoaderScreen() {
 function App() {
   return (
     <>
-      <audio src={bgMusic} autoPlay loop />
+      <audio src="/assets/Audio/guts.mp3" autoPlay loop />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LoaderScreen />} />

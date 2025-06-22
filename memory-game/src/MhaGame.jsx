@@ -1,29 +1,4 @@
 import React, { useState } from 'react';
-import mha1 from './assets/Mha/mha1.jpg';
-import mha2 from './assets/Mha/mha2.jpg';
-import mha3 from './assets/Mha/mha3.jpg';
-import mha4 from './assets/Mha/mha4.jpg';
-import mha5 from './assets/Mha/mha5.jpg';
-import mha6 from './assets/Mha/mha6.jpg';
-import mha7 from './assets/Mha/mha7.jpg';
-import mha8 from './assets/Mha/mha8.jpg';
-import mha9 from './assets/Mha/mha9.jpg';
-import mha10 from './assets/Mha/mha10.jpg';
-import mha11 from './assets/Mha/mha11.jpg';
-import mha12 from './assets/Mha/mha12.jpg';
-import mha13 from './assets/Mha/mha13.jpg';
-import mha14 from './assets/Mha/mha14.jpg';
-import mha15 from './assets/Mha/mha15.jpg';
-import mha16 from './assets/Mha/mha16.jpg';
-import mha17 from './assets/Mha/mha17.jpg';
-import mha18 from './assets/Mha/mha18.jpg';
-import mha19 from './assets/Mha/mha19.jpg';
-import mha20 from './assets/Mha/mha20.jpg';
-import mha21 from './assets/Mha/mha21.jpg';
-import mha22 from './assets/Mha/mha22.jpg';
-import mha23 from './assets/Mha/mha23.jpg';
-import mha24 from './assets/Mha/mha24.jpg';
-import mha25 from './assets/Mha/mha25.jpg';
 
 const levels = [
   { label: 'Easy', value: 'easy' },
@@ -31,11 +6,15 @@ const levels = [
   { label: 'Hard', value: 'hard' },
 ];
 
-const mhaImages = [mha1, mha2, mha3, mha4, mha5];
-const mhaImagesMedium = [mha6, mha7, mha8, mha9, mha10, mha11, mha12, mha13];
+const mhaImages = [
+  '/assets/Mha/mha1.jpg', '/assets/Mha/mha2.jpg', '/assets/Mha/mha3.jpg', '/assets/Mha/mha4.jpg', '/assets/Mha/mha5.jpg'
+];
+const mhaImagesMedium = [
+  '/assets/Mha/mha6.jpg', '/assets/Mha/mha7.jpg', '/assets/Mha/mha8.jpg', '/assets/Mha/mha9.jpg', '/assets/Mha/mha10.jpg', '/assets/Mha/mha11.jpg', '/assets/Mha/mha12.jpg', '/assets/Mha/mha13.jpg'
+];
 const mhaImagesHard = [
-  mha14, mha15, mha16, mha17, mha18, mha19,
-  mha20, mha21, mha22, mha23, mha24, mha25
+  '/assets/Mha/mha14.jpg', '/assets/Mha/mha15.jpg', '/assets/Mha/mha16.jpg', '/assets/Mha/mha17.jpg', '/assets/Mha/mha18.jpg', '/assets/Mha/mha19.jpg',
+  '/assets/Mha/mha20.jpg', '/assets/Mha/mha21.jpg', '/assets/Mha/mha22.jpg', '/assets/Mha/mha23.jpg', '/assets/Mha/mha24.jpg', '/assets/Mha/mha25.jpg'
 ];
 
 function shuffleArray(array) {
