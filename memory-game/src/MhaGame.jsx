@@ -174,6 +174,10 @@ const MhaGame = () => {
                 gameOver
                   ? 'Defeated this round! Even Deku stumbles. Try again, future Hero!'
                   : 'You aced the easy mode! You’re on your way to becoming a Pro Hero!'
+              ) : selectedLevel === 'medium' ? (
+                gameOver
+                  ? 'Defeated this round! Even Deku stumbles. Try again, future Hero!'
+                  : 'You conquered medium! Your Quirk is memory!'
               ) : (
                 gameOver
                   ? 'Defeated this round! Even Deku stumbles. Try again, future Hero!'
@@ -189,6 +193,34 @@ const MhaGame = () => {
                   setGameOver(false);
                   setWin(false);
                   setVisibleCards(shuffleArray(mhaImagesMedium.map((img, i) => ({ img, flipped: false, id: i }))).slice(0, 5));
+                }}
+                style={{
+                  marginTop: 8,
+                  padding: '10px 32px',
+                  fontSize: '1.1rem',
+                  borderRadius: 8,
+                  border: 'none',
+                  background: '#00ffe7',
+                  color: '#222',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  boxShadow: '0 2px 8px #0006',
+                  transition: 'all 0.2s',
+                  marginBottom: 8,
+                }}
+              >
+                Next Level
+              </button>
+            ) : null}
+            {selectedLevel === 'medium' && win ? (
+              <button
+                onClick={() => {
+                  setSelectedLevel('hard');
+                  setCards(mhaImagesHard.map((img, i) => ({ img, flipped: false, id: i })));
+                  setClickedIds([]);
+                  setGameOver(false);
+                  setWin(false);
+                  setVisibleCards(shuffleArray(mhaImagesHard.map((img, i) => ({ img, flipped: false, id: i }))).slice(0, 5));
                 }}
                 style={{
                   marginTop: 8,
