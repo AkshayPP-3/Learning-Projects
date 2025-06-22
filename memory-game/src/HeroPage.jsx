@@ -4,15 +4,15 @@ import { useNavigate } from 'react-router-dom';
 const animeCards = [
   {
     title: 'ONE PIECE',
-    video: '/assets/Background/luffy.mp4',
+    video: '/assets/Background/luffy_fixed.mp4',
   },
   {
     title: 'MY HERO ACADEMIA',
-    video: '/assets/Background/deku.mp4',
+    video: '/assets/Background/deku_fixed.mp4',
   },
   {
     title: 'BLEACH',
-    video: '/assets/Background/ichigo.mp4',
+    video: '/assets/Background/ichigo_fixed.mp4',
   },
 ];
 
@@ -86,7 +86,7 @@ const HeroPage = () => {
           zIndex: -1
         }}
       >
-        <source src={'/assets/Background/hero_background.mp4'} type="video/mp4" />
+        <source src={'/assets/Background/hero_background_fixed.mp4'} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       <div style={{ position: 'relative', zIndex: 1, height: '100vh', width: '100vw', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>

@@ -33,7 +33,7 @@ function HomePage() {
           zIndex: -1,
         }}
       >
-        <source src="/assets/Background/animated-video-for-background.mp4" type="video/mp4" />
+        <source src="/assets/Background/animated-video-for-background_fixed.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       <div className="main" style={{ position: 'relative', zIndex: 1, height: '100vh', width: '100vw', display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
