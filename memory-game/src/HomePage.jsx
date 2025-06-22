@@ -48,13 +48,16 @@ function HomePage() {
 }
 
 function HowToPlayButton({ onClick }) {
+  const [hover, setHover] = useState(false);
   return (
     <button
       aria-label="How to Play"
       onClick={onClick}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
       style={{
         marginLeft: '32px',
-        background: 'rgba(0,0,0,0.7)',
+        background: hover ? '#fff' : '#232526',
         border: '2px solid #fff',
         borderRadius: '50%',
         width: '48px',
@@ -64,10 +67,11 @@ function HowToPlayButton({ onClick }) {
         justifyContent: 'center',
         cursor: 'pointer',
         fontSize: '2rem',
-        color: '#fff',
-        boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+        color: hover ? '#232526' : '#fff',
+        boxShadow: hover ? '0 4px 16px #23252644' : '0 2px 8px #fff4',
         position: 'relative',
         zIndex: 3,
+        transition: 'background 0.2s, color 0.2s, box-shadow 0.2s',
       }}
     >
       ?
