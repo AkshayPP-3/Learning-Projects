@@ -281,6 +281,21 @@ const OnePieceGame = () => {
           boxShadow: '0 2px 8px #0006',
           outline: 'none',
           gap: 8,
+          transition: 'background 0.2s, color 0.2s',
+        }}
+        onMouseOver={e => {
+          e.currentTarget.style.background = '#ffe066';
+          e.currentTarget.style.color = '#222';
+          // Change SVG arrow color on hover
+          const svg = e.currentTarget.querySelector('svg path');
+          if (svg) svg.setAttribute('stroke', '#222');
+        }}
+        onMouseOut={e => {
+          e.currentTarget.style.background = 'rgba(0,0,0,0.7)';
+          e.currentTarget.style.color = '#ffe066';
+          // Restore SVG arrow color
+          const svg = e.currentTarget.querySelector('svg path');
+          if (svg) svg.setAttribute('stroke', '#ffe066');
         }}
       >
         <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 24 }}>
