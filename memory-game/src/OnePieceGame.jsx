@@ -144,12 +144,12 @@ const OnePieceGame = () => {
   const renderCards = () => {
     if (selectedLevel === 'medium' || selectedLevel === 'hard') {
       return (
-        <div className="onepiece-card-container">
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '36px', flexWrap: 'wrap', marginTop: 24 }}>
           {visibleCards.map((card) => (
             <div
               key={card.id}
-              className="flip-card onepiece-card"
-              style={{ perspective: 800, borderRadius: 16, boxShadow: '0 4px 16px #0006', margin: 0 }}
+              className="flip-card"
+              style={{ width: 200, height: 280, perspective: 800, borderRadius: 16, boxShadow: '0 4px 16px #0006', margin: 0 }}
               onClick={e => { e.stopPropagation(); handleCardClick(card.id); }}
             >
               <div
@@ -201,12 +201,12 @@ const OnePieceGame = () => {
     }
     // Easy level
     return (
-      <div className="onepiece-card-container">
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '36px', flexWrap: 'wrap', marginTop: 24 }}>
         {cards.map((card) => (
           <div
             key={card.id}
-            className="flip-card onepiece-card"
-            style={{ perspective: 800, borderRadius: 16, boxShadow: '0 4px 16px #0006', margin: 0 }}
+            className="flip-card"
+            style={{ width: 200, height: 280, perspective: 800, borderRadius: 16, boxShadow: '0 4px 16px #0006', margin: 0 }}
             onClick={e => { e.stopPropagation(); handleCardClick(card.id); }}
           >
             <div
@@ -259,6 +259,37 @@ const OnePieceGame = () => {
 
   return (
     <div style={{ minHeight: '100vh', minWidth: '100vw', background: '#2DC7FF', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
+      {/* Back Button */}
+      <button
+        onClick={() => window.history.back()}
+        style={{
+          position: 'fixed',
+          top: 24,
+          left: 1140,
+          background: 'rgba(0,0,0,0.7)',
+          color: '#ffe066',
+          border: 'none',
+          borderRadius: 8,
+          padding: '10px 18px',
+          fontSize: '1.2rem',
+          fontWeight: 700,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          cursor: 'pointer',
+          zIndex: 100,
+          boxShadow: '0 2px 8px #0006',
+          outline: 'none',
+          gap: 8,
+        }}
+      >
+        <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 24 }}>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 18L9 12L15 6" stroke="#ffe066" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </span>
+        Back
+      </button>
       <div style={{
         background: 'rgba(0,0,0,0.6)',
         padding: '32px',
