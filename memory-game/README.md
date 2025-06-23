@@ -25,7 +25,7 @@ A beautiful, fast, and fun memory card game built with React! Test your memory w
 
 ## 📦 Source Code
 
-[GitHub Repository](https://github.com/AkshayPP-3/memory-game)
+[GitHub Repository](https://github.com/AkshayPP-3/Learning-Projects/memory-game)
 
 ---
 
