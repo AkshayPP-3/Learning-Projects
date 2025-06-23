@@ -7,7 +7,7 @@ A beautiful, fast, and fun memory card game built with React! Test your memory w
 
 ## 🚀 Live Demo
 
-👉 [Live on Vercel](https://memory-game-akshaypp-3.vercel.app/)
+👉 [Live on Vercel](https://memory-game-lake-psi.vercel.app/)
 
 ---
 
