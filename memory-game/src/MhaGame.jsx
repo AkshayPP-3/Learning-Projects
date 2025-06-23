@@ -309,12 +309,12 @@ const MhaGame = () => {
             </div>
           )}
           {selectedLevel === 'easy' && (
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '36px', flexWrap: 'wrap', marginTop: 24 }}>
+            <div className="onepiece-card-container">
               {cards.map((card) => (
                 <div
                   key={card.id}
-                  className="flip-card"
-                  style={{ width: 200, height: 280, perspective: 800, borderRadius: 16, boxShadow: '0 4px 16px #0006', margin: 0 }}
+                  className="flip-card onepiece-card"
+                  style={{ perspective: 800, borderRadius: 16, boxShadow: '0 4px 16px #0006', margin: 0 }}
                   onClick={e => { e.stopPropagation(); handleCardClick(card.id); }}
                 >
                   <div
@@ -372,12 +372,12 @@ const MhaGame = () => {
             </div>
           )}
           {selectedLevel === 'medium' && (
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '36px', flexWrap: 'wrap', marginTop: 24 }}>
+            <div className="onepiece-card-container">
               {visibleCards.map((card) => (
                 <div
                   key={card.id}
-                  className="flip-card"
-                  style={{ width: 200, height: 280, perspective: 800, borderRadius: 16, boxShadow: '0 4px 16px #0006', margin: 0 }}
+                  className="flip-card onepiece-card"
+                  style={{ perspective: 800, borderRadius: 16, boxShadow: '0 4px 16px #0006', margin: 0 }}
                   onClick={e => { e.stopPropagation(); handleCardClick(card.id); }}
                 >
                   <div
@@ -435,12 +435,12 @@ const MhaGame = () => {
             </div>
           )}
           {selectedLevel === 'hard' && (
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '36px', flexWrap: 'wrap', marginTop: 24 }}>
+            <div className="onepiece-card-container">
               {visibleCards.map((card) => (
                 <div
                   key={card.id}
-                  className="flip-card"
-                  style={{ width: 200, height: 280, perspective: 800, borderRadius: 16, boxShadow: '0 4px 16px #0006', margin: 0 }}
+                  className="flip-card onepiece-card"
+                  style={{ perspective: 800, borderRadius: 16, boxShadow: '0 4px 16px #0006', margin: 0 }}
                   onClick={e => { e.stopPropagation(); handleCardClick(card.id); }}
                 >
                   <div
