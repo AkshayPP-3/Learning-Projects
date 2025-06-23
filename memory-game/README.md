@@ -2,13 +2,10 @@
 
 A beautiful, fast, and fun memory card game built with React! Test your memory with your favorite anime heroes from One Piece, My Hero Academia, and Bleach. Choose your anime, pick a level, and see how far you can go!
 
-![Game Demo](public/assets/Background/animated-video-for-background_poster.PNG)
 
 ---
 
 ## 🚀 Live Demo
-
-👉 [Play Now on GitHub Pages](https://AkshayPP-3.github.io/memory-game)
 
 👉 [Live on Vercel](https://memory-game-akshaypp-3.vercel.app/)
 
@@ -35,16 +32,22 @@ A beautiful, fast, and fun memory card game built with React! Test your memory w
 ## 📝 How to Play
 
 1. Click the **PLAY** button to start.
-2. Choose your favorite anime.
-3. Select a level (Easy, Medium, Hard).
+2. Choose your favorite anime from the selection screen.
+3. Select a level:
+   - **Easy:** All cards are visible, no shuffling.
+   - **Medium:** Only 5 cards are visible at a time, cards shuffle after every click.
+   - **Hard:** Same as Medium, but with more cards and increased difficulty.
 4. Click each card only once. If you click the same card twice, you lose!
 5. Try to click all unique cards to win and advance to the next level.
+6. After winning, use the **Next Level** button to keep playing and challenge yourself further.
+7. Each anime/game has its own themed win/lose popups and progression.
+8. Enjoy the background music and animated video backgrounds for an immersive experience.
+9. You can always return to the home page to switch anime or restart the game.
 
----
-
-## ✨ Screenshots
-
-![Home Page](public/assets/Background/hero_background_poster.png)
+**Tips:**
+- Focus and try to remember which cards you have already clicked.
+- On Medium/Hard, cards will shuffle and only a subset is visible—stay sharp!
+- Each level gets harder, so challenge your memory and see how far you can go!
 
 ---
 
@@ -54,7 +57,7 @@ A beautiful, fast, and fun memory card game built with React! Test your memory w
 - Vite
 - React Router
 - Tailwind CSS
-- Deployed on GitHub Pages & Vercel
+- Deployed on Vercel
 
 ---
 
