@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-// import bgVideo from './assets/Background/animated-video-for-background.mp4';
 import { useNavigate } from 'react-router-dom';
 
 function HomePage() {
@@ -8,7 +7,6 @@ function HomePage() {
   useEffect(() => {
     document.body.style.background = 'none';
     document.body.style.backgroundColor = '#000';
-    // Prevent scrolling
     document.body.style.overflow = 'hidden';
     return () => {
       document.body.style.background = '';
@@ -24,7 +22,7 @@ function HomePage() {
         muted
         playsInline
         preload="auto"
-        poster="/assets/Background/animated-video-for-background_poster.png" // <-- Add this poster image to public/assets/Background/
+        poster="/assets/Background/animated-video-for-background_poster.PNG"
         style={{
           position: 'fixed',
           top: 0,
@@ -35,7 +33,7 @@ function HomePage() {
           zIndex: -1,
         }}
       >
-        <source src="/assets/Background/animated-video-for-background_fixed.mp4" type="video/mp4" />
+        <source src="/assets/Background/animated-video-for-background_fixed_720p.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       <div className="main" style={{ position: 'relative', zIndex: 1, height: '100vh', width: '100vw', display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
