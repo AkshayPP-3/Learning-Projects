@@ -4,15 +4,15 @@ import { useNavigate } from 'react-router-dom';
 const animeCards = [
   {
     title: 'ONE PIECE',
-    video: '/assets/Background/luffy_fixed.mp4',
+    video: '/assets/Background/luffy_fixed_720p.mp4',
   },
   {
     title: 'MY HERO ACADEMIA',
-    video: '/assets/Background/deku_fixed.mp4',
+    video: '/assets/Background/deku_fixed_720p.mp4',
   },
   {
     title: 'BLEACH',
-    video: '/assets/Background/ichigo_fixed.mp4',
+    video: '/assets/Background/ichigo_fixed_720p.mp4',
   },
 ];
 
@@ -77,7 +77,7 @@ const HeroPage = () => {
         muted
         playsInline
         preload="auto"
-        poster="/assets/Background/hero_background_poster.png" // <-- Add this poster image to public/assets/Background/
+        poster="/assets/Background/hero_background_poster.png"
         style={{
           position: 'fixed',
           top: 0,
@@ -88,7 +88,7 @@ const HeroPage = () => {
           zIndex: -1
         }}
       >
-        <source src={'/assets/Background/hero_background_fixed.mp4'} type="video/mp4" />
+        <source src={'/assets/Background/hero_background_fixed_720p.mp4'} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       <div style={{ position: 'relative', zIndex: 1, height: '100vh', width: '100vw', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
@@ -165,7 +165,7 @@ const HeroPage = () => {
                   muted
                   playsInline
                   preload="auto"
-                  poster={card.video.replace('.mp4', '_poster.png')} // <-- Add poster images for each video
+                  poster={card.video.replace('.mp4', '_poster.png')}
                   style={{ width: '100%', height: '70%', objectFit: 'cover', borderRadius: '10px 10px 0 0', marginBottom: '0', zIndex: 2 }}
                 />
                 <h2 style={{ margin: 0, fontSize: '1.2rem', letterSpacing: '2px', textShadow: '0 2px 8px #000, 0 0 8px #00ffe7', height: '30%', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>{card.title}</h2>
