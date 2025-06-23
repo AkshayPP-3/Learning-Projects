@@ -76,6 +76,8 @@ const HeroPage = () => {
         loop
         muted
         playsInline
+        preload="auto"
+        poster="/assets/Background/hero_background_poster.png" // <-- Add this poster image to public/assets/Background/
         style={{
           position: 'fixed',
           top: 0,
@@ -162,6 +164,8 @@ const HeroPage = () => {
                   loop
                   muted
                   playsInline
+                  preload="auto"
+                  poster={card.video.replace('.mp4', '_poster.png')} // <-- Add poster images for each video
                   style={{ width: '100%', height: '70%', objectFit: 'cover', borderRadius: '10px 10px 0 0', marginBottom: '0', zIndex: 2 }}
                 />
                 <h2 style={{ margin: 0, fontSize: '1.2rem', letterSpacing: '2px', textShadow: '0 2px 8px #000, 0 0 8px #00ffe7', height: '30%', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>{card.title}</h2>

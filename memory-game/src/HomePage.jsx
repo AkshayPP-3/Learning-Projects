@@ -23,6 +23,8 @@ function HomePage() {
         loop
         muted
         playsInline
+        preload="auto"
+        poster="/assets/Background/animated-video-for-background_poster.png" // <-- Add this poster image to public/assets/Background/
         style={{
           position: 'fixed',
           top: 0,
