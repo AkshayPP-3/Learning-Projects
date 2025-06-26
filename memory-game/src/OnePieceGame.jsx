@@ -256,65 +256,68 @@ const OnePieceGame = () => {
       </div>
     );
   };
-
   return (
-    <div style={{ minHeight: '100vh', minWidth: '100vw', background: '#2DC7FF', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
-      {/* Back Button */}
-      <button
-        onClick={() => window.history.back()}
-        style={{
-          position: 'fixed',
-          top: 24,
-          left: 1140,
-          background: 'rgba(0,0,0,0.7)',
-          color: '#ffe066',
-          border: 'none',
-          borderRadius: 8,
-          padding: '10px 18px',
-          fontSize: '1.2rem',
-          fontWeight: 700,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          cursor: 'pointer',
-          zIndex: 100,
-          boxShadow: '0 2px 8px #0006',
-          outline: 'none',
-          gap: 8,
-          transition: 'background 0.2s, color 0.2s',
-        }}
-        onMouseOver={e => {
-          e.currentTarget.style.background = '#ffe066';
-          e.currentTarget.style.color = '#222';
-          // Change SVG arrow color on hover
-          const svg = e.currentTarget.querySelector('svg path');
-          if (svg) svg.setAttribute('stroke', '#222');
-        }}
-        onMouseOut={e => {
-          e.currentTarget.style.background = 'rgba(0,0,0,0.7)';
-          e.currentTarget.style.color = '#ffe066';
-          // Restore SVG arrow color
-          const svg = e.currentTarget.querySelector('svg path');
-          if (svg) svg.setAttribute('stroke', '#ffe066');
-        }}
-      >
-        <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 24 }}>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M15 18L9 12L15 6" stroke="#ffe066" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </span>
-        Back
-      </button>
-      <div style={{
-        background: 'rgba(0,0,0,0.6)',
-        padding: '32px',
-        borderRadius: '16px',
-        boxShadow: '0 4px 32px #000a',
-        color: '#fff',
-        textAlign: 'center',
-        minWidth: '340px',
-        position: 'relative',
-      }}>
+    <div style={{ minHeight: '100vh', minWidth: '100vw', background: '#2DC7FF', display: 'flex', flexDirection: 'column', padding: '24px' }}>
+      {/* Back Button Container */}
+      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
+        <div style={{ width: '100%', maxWidth: '1200px', display: 'flex', justifyContent: 'flex-end' }}>
+          <button
+            onClick={() => window.history.back()}
+            style={{
+              background: 'rgba(0,0,0,0.7)',
+              color: '#ffe066',
+              border: 'none',
+              borderRadius: 8,
+              padding: '10px 18px',
+              fontSize: '1.2rem',
+              fontWeight: 700,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              boxShadow: '0 2px 8px #0006',
+              outline: 'none',
+              gap: 8,
+              transition: 'background 0.2s, color 0.2s',
+            }}
+            onMouseOver={e => {
+              e.currentTarget.style.background = '#ffe066';
+              e.currentTarget.style.color = '#222';
+              // Change SVG arrow color on hover
+              const svg = e.currentTarget.querySelector('svg path');
+              if (svg) svg.setAttribute('stroke', '#222');
+            }}
+            onMouseOut={e => {
+              e.currentTarget.style.background = 'rgba(0,0,0,0.7)';
+              e.currentTarget.style.color = '#ffe066';
+              // Restore SVG arrow color
+              const svg = e.currentTarget.querySelector('svg path');
+              if (svg) svg.setAttribute('stroke', '#ffe066');
+            }}
+          >
+            <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 24 }}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 18L9 12L15 6" stroke="#ffe066" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </span>
+            Back
+          </button>
+        </div>
+      </div>
+      
+      {/* Main Content Container */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 1 }}>
+        <div style={{ width: '100%', maxWidth: '1200px', display: 'flex', justifyContent: 'center' }}>
+          <div style={{
+            background: 'rgba(0,0,0,0.6)',
+            padding: '32px',
+            borderRadius: '16px',
+            boxShadow: '0 4px 32px #000a',
+            color: '#fff',
+            textAlign: 'center',
+            minWidth: '340px',
+            position: 'relative',
+          }}>
         {/* Popup Modal for Win and Lose */}
         {(gameOver || win) && (
           <div style={{
@@ -494,6 +497,8 @@ const OnePieceGame = () => {
         {selectedLevel === 'easy' && renderCards()}
         {selectedLevel === 'medium' && renderCards()}
         {selectedLevel === 'hard' && renderCards()}
+          </div>
+        </div>
       </div>
     </div>
   );

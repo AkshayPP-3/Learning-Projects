@@ -10,7 +10,8 @@ This repository contains multiple small projects. Each project is in its own fol
 | passenger-count     | [View](https://akshaypp-3.github.io/Learning-Projects/passenger-count)        | [Source](https://github.com/akshaypp-3/Learning-Projects/tree/main/passenger-count)           |
 | portfolio-1         | [View](https://akshaypp-3.github.io/Learning-Projects/portfolio-1)            | [Source](https://github.com/akshaypp-3/Learning-Projects/tree/main/portfolio-1)               |
 | smartphones-ui      | [View](https://akshaypp-3.github.io/Learning-Projects/smartphones-ui)         | [Source](https://github.com/akshaypp-3/Learning-Projects/tree/main/smartphones-ui)            |
-| memory-game         | [View](https://memory-game-akshaypp-3.vercel.app/) | [Source](https://github.com/AkshayPP-3/Learning-Projects/tree/main/memory-game) |
+| memory-game         | [View](https://memory-game-lake-psi.vercel.app/) | 
+[Source](https://github.com/AkshayPP-3/Learning-Projects/tree/main/memory-game) |
 
 ---
 
