@@ -20,4 +20,111 @@ body{
     background-color: rgb(225, 215, 215);
     height: 45px;
     width: 120px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.new-book-btn:hover {
+    background-color: rgb(200, 190, 190);
+}
+
+/* Dialog Box Styles */
+.book-dialog {
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    width: 400px;
+    max-width: 90%;
+    background-color: white;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+.book-dialog:not([open]) {
+    display: none;
+}
+
+.book-dialog[open] {
+    display: block;
+}
+
+.book-dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.book-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.book-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.book-form label {
+    font-weight: bold;
+    color: #555;
+}
+
+.book-form input[type="text"],
+.book-form input[type="number"] {
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.book-form input[type="text"]:focus,
+.book-form input[type="number"]:focus {
+    outline: none;
+    border-color: aquamarine;
+}
+
+.book-form input[type="checkbox"] {
+    transform: scale(1.2);
+    margin-left: 10px;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.form-buttons button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form-buttons button[type="submit"] {
+    background-color: aquamarine;
+    color: #333;
+}
+
+.form-buttons button[type="submit"]:hover {
+    background-color: #40e0d0;
+}
+
+.form-buttons button[type="button"] {
+    background-color: #f44336;
+    color: white;
+}
+
+.form-buttons button[type="button"]:hover {
+    background-color: #d32f2f;
 }
