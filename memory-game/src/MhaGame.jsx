@@ -38,18 +38,7 @@ const MhaGame = () => {
   const [gameOver, setGameOver] = useState(false);
   const [win, setWin] = useState(false);
 
-  // Preload all medium and hard images on mount
-  React.useEffect(() => {
-    mhaImagesMedium.forEach(img => {
-      const image = new window.Image();
-      image.src = img;
-    });
-    mhaImagesHard.forEach(img => {
-      const image = new window.Image();
-      image.src = img;
-    });
-  }, []);
-
+  // Preload only the selected level's images
   React.useEffect(() => {
     if (selectedLevel === 'easy') {
       setCards(mhaImages.map((img, i) => ({ img, flipped: false, id: i })));
@@ -57,12 +46,22 @@ const MhaGame = () => {
       setGameOver(false);
       setWin(false);
       setVisibleCards([]);
+      // Preload medium level
+      mhaImagesMedium.forEach(img => {
+        const image = new window.Image();
+        image.src = img;
+      });
     } else if (selectedLevel === 'medium') {
       setCards(mhaImagesMedium.map((img, i) => ({ img, flipped: false, id: i })));
       setClickedIds([]);
       setGameOver(false);
       setWin(false);
       setVisibleCards(shuffleArray(mhaImagesMedium.map((img, i) => ({ img, flipped: false, id: i }))).slice(0, 5));
+      // Preload hard level
+      mhaImagesHard.forEach(img => {
+        const image = new window.Image();
+        image.src = img;
+      });
     } else if (selectedLevel === 'hard') {
       setCards(mhaImagesHard.map((img, i) => ({ img, flipped: false, id: i })));
       setClickedIds([]);
@@ -169,7 +168,7 @@ const MhaGame = () => {
                     overflow: 'hidden',
                   }}
                 >
-                  <img src={card.img} alt={`MHA ${card.id + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src={card.img} alt={`MHA ${card.id + 1}`} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
                 {/* Card Back (just yellow color) */}
                 <div
@@ -226,7 +225,7 @@ const MhaGame = () => {
                   overflow: 'hidden',
                 }}
               >
-                <img src={card.img} alt={`MHA ${card.id + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <img src={card.img} alt={`MHA ${card.id + 1}`} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
               {/* Card Back (just yellow color) */}
               <div

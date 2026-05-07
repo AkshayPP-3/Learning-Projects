@@ -66,20 +66,10 @@ const OnePieceGame = () => {
     }
   };
 
-  // Preload all medium and hard images on mount
+  // Preload only the selected level's images and reset game state
   React.useEffect(() => {
-    onePieceImagesMedium.forEach(img => {
-      const image = new window.Image();
-      image.src = img;
-    });
-    onePieceImagesHard.forEach(img => {
-      const image = new window.Image();
-      image.src = img;
-    });
-  }, []);
-
-  // Reset cards and game state when level changes
-  React.useEffect(() => {
+    if (!selectedLevel) return;
+    
     const cardSet = getCardSet();
     setCards(cardSet.map((img, i) => ({ img, flipped: false, id: i })));
     setScore(0);
@@ -91,6 +81,19 @@ const OnePieceGame = () => {
       setVisibleCards(shuffleArray(cardSet.map((img, i) => ({ img, flipped: false, id: i }))).slice(0, 5));
     } else {
       setVisibleCards([]);
+    }
+    
+    // Preload only the next level's images
+    if (selectedLevel === 'easy') {
+      onePieceImagesMedium.forEach(img => {
+        const image = new window.Image();
+        image.src = img;
+      });
+    } else if (selectedLevel === 'medium') {
+      onePieceImagesHard.forEach(img => {
+        const image = new window.Image();
+        image.src = img;
+      });
     }
   }, [selectedLevel]);
 // You lost 
@@ -176,7 +179,7 @@ const OnePieceGame = () => {
                     overflow: 'hidden',
                   }}
                 >
-                  <img src={card.img} alt={`One Piece ${card.id + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src={card.img} alt={`One Piece ${card.id + 1}`} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
                 {/* Card Back (just yellow color) */}
                 <div
@@ -233,7 +236,7 @@ const OnePieceGame = () => {
                   overflow: 'hidden',
                 }}
               >
-                <img src={card.img} alt={`One Piece ${card.id + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <img src={card.img} alt={`One Piece ${card.id + 1}`} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
               {/* Card Back (just yellow color) */}
               <div

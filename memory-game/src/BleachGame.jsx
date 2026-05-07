@@ -39,18 +39,7 @@ const BleachGame = () => {
   const [gameOver, setGameOver] = useState(false);
   const [win, setWin] = useState(false);
 
-  // Preload all medium and hard images on mount
-  React.useEffect(() => {
-    bleachImagesMedium.forEach(img => {
-      const image = new window.Image();
-      image.src = img;
-    });
-    bleachImagesHard.forEach(img => {
-      const image = new window.Image();
-      image.src = img;
-    });
-  }, []);
-
+  // Preload only the selected level's images
   React.useEffect(() => {
     if (selectedLevel === 'easy') {
       setCards(bleachImages.map((img, i) => ({ img, flipped: false, id: i })));
@@ -58,12 +47,22 @@ const BleachGame = () => {
       setGameOver(false);
       setWin(false);
       setVisibleCards([]);
+      // Preload medium level
+      bleachImagesMedium.forEach(img => {
+        const image = new window.Image();
+        image.src = img;
+      });
     } else if (selectedLevel === 'medium') {
       setCards(bleachImagesMedium.map((img, i) => ({ img, flipped: false, id: i })));
       setClickedIds([]);
       setGameOver(false);
       setWin(false);
       setVisibleCards(shuffleArray(bleachImagesMedium.map((img, i) => ({ img, flipped: false, id: i }))).slice(0, 5));
+      // Preload hard level
+      bleachImagesHard.forEach(img => {
+        const image = new window.Image();
+        image.src = img;
+      });
     } else if (selectedLevel === 'hard') {
       setCards(bleachImagesHard.map((img, i) => ({ img, flipped: false, id: i })));
       setClickedIds([]);
@@ -170,7 +169,7 @@ const BleachGame = () => {
                     overflow: 'hidden',
                   }}
                 >
-                  <img src={card.img} alt={`Bleach ${card.id + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src={card.img} alt={`Bleach ${card.id + 1}`} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
                 {/* Card Back (just yellow color) */}
                 <div
@@ -226,7 +225,7 @@ const BleachGame = () => {
                   overflow: 'hidden',
                 }}
               >
-                <img src={card.img} alt={`Bleach ${card.id + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <img src={card.img} alt={`Bleach ${card.id + 1}`} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
               {/* Card Back (just yellow color) */}
               <div
