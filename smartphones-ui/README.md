@@ -1,12 +1,14 @@
 # 📱 Smartphones UI
 
-A React-based smartphone showcase app built with Create React App and Bootstrap. It presents a curated set of phones in a clean product-style layout.
+A smartphone showcase demo built for GitHub Pages with a clean product-style layout and interactive quantity controls.
 
 ---
 
 ## 🎮 Preview
 
 👉 [**Live Demo**](https://akshaypp-3.github.io/Learning-Projects/smartphones-ui)
+
+The live link opens the static demo page in `smartphones-ui/index.html`.
 
 ---
 
