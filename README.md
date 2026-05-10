@@ -2,6 +2,8 @@
 
 This repository contains multiple small projects. Each project is in its own folder. Below you will find links to view each project live and to browse its source code.
 
+Each project folder also includes its own README with project-specific details where available.
+
 | Project Name         | Project Page                                                                 | Source Code                                                                                   |
 |---------------------|------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
 | blackjack           | [View](https://akshaypp-3.github.io/Learning-Projects/blackjack)              | [Source](https://github.com/akshaypp-3/Learning-Projects/tree/main/blackjack)                 |
