@@ -1,12 +1,27 @@
-# React + Vite
+# 📄 Curriculum Vitae (CV)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A professional and interactive curriculum vitae built with React and Vite. Showcase your skills, experience, and projects in a modern, responsive web format.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🎮 Preview
 
-## Expanding the ESLint configuration
+👉 [**Live Demo**](https://curriculum-vitae-cv-seven.vercel.app)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## ✨ Features
+- 📱 Fully responsive design
+- ⚡ Built with React + Vite for fast performance
+- 🎨 Modern and professional UI
+- 📊 Clean presentation of skills and experience
+
+---
+
+## 📂 Source Code
+[View Source](https://github.com/akshaypp-3/Learning-Projects/tree/main/curriculum-vitae-CV)
+
+---
+
+## 📜 License
+This project is for learning purposes and is open source.
