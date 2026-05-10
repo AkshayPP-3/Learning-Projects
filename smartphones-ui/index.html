@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#07111f" />
+  <meta
+    name="description"
+    content="Smartphones UI demo - a polished product showcase with phone cards, pricing, and quantity controls."
+  />
+  <title>Smartphones UI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">React practice demo</p>
+        <h1>Smartphones UI</h1>
+        <p class="lead">
+          A focused product showcase for flagship phones, built as a polished demo page for GitHub Pages.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#products">View phones</a>
+          <a class="button button-secondary" href="https://github.com/akshaypp-3/Learning-Projects/tree/main/smartphones-ui" target="_blank" rel="noreferrer">Source code</a>
+        </div>
+      </div>
+      <aside class="hero-panel">
+        <span class="panel-label">Demo status</span>
+        <strong>Live on GitHub Pages</strong>
+        <p>This page replaces the README-only landing path so the project URL opens a real demo.</p>
+        <div class="panel-stats">
+          <div><span>5</span><small>featured phones</small></div>
+          <div><span>₹ 3L+</span><small>catalog value</small></div>
+          <div><span>Responsive</span><small>mobile ready</small></div>
+        </div>
+      </aside>
+    </header>
+
+    <main>
+      <section class="toolbar" aria-label="Demo summary">
+        <div>
+          <p class="toolbar-label">Curated lineup</p>
+          <h2>High-end smartphones with instant quantity controls</h2>
+        </div>
+        <div class="cart-pill" id="cart-pill">Cart total: 0</div>
+      </section>
+
+      <section class="products" id="products" aria-label="Smartphone products">
+        <article class="product-card" data-price="76999">
+          <div class="phone-art art-1">RM</div>
+          <div class="card-copy">
+            <p class="brand">Nubia</p>
+            <h3>RedMagic 9 Pro</h3>
+            <p>Gaming-first hardware with a clean silver finish and a bold flagship look.</p>
+            <div class="meta-row">
+              <strong>₹ 76,999</strong>
+              <span>16GB + 512GB</span>
+            </div>
+            <div class="controls">
+              <button type="button" class="qty-btn" data-action="decrease">-</button>
+              <span class="quantity" data-quantity>0</span>
+              <button type="button" class="qty-btn" data-action="increase">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-price="31999">
+          <div class="phone-art art-2">IQ</div>
+          <div class="card-copy">
+            <p class="brand">iQOO</p>
+            <h3>Neo9 Pro</h3>
+            <p>Fast, colorful, and tuned for everyday performance with a premium feel.</p>
+            <div class="meta-row">
+              <strong>₹ 31,999</strong>
+              <span>8GB + 128GB</span>
+            </div>
+            <div class="controls">
+              <button type="button" class="qty-btn" data-action="decrease">-</button>
+              <span class="quantity" data-quantity>0</span>
+              <button type="button" class="qty-btn" data-action="increase">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-price="106999">
+          <div class="phone-art art-3">IP</div>
+          <div class="card-copy">
+            <p class="brand">Apple</p>
+            <h3>iPhone 16 Pro</h3>
+            <p>Minimal, refined, and focused on premium materials and camera power.</p>
+            <div class="meta-row">
+              <strong>₹ 1,06,999</strong>
+              <span>128GB</span>
+            </div>
+            <div class="controls">
+              <button type="button" class="qty-btn" data-action="decrease">-</button>
+              <span class="quantity" data-quantity>0</span>
+              <button type="button" class="qty-btn" data-action="increase">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-price="123999">
+          <div class="phone-art art-4">SS</div>
+          <div class="card-copy">
+            <p class="brand">Samsung</p>
+            <h3>Galaxy S25 Ultra</h3>
+            <p>A flagship display and camera set with a sharp titanium finish.</p>
+            <div class="meta-row">
+              <strong>₹ 1,23,999</strong>
+              <span>256GB</span>
+            </div>
+            <div class="controls">
+              <button type="button" class="qty-btn" data-action="decrease">-</button>
+              <span class="quantity" data-quantity>0</span>
+              <button type="button" class="qty-btn" data-action="increase">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-price="94999">
+          <div class="phone-art art-5">RO</div>
+          <div class="card-copy">
+            <p class="brand">ASUS ROG</p>
+            <h3>Phone 8 Pro</h3>
+            <p>A sharp gaming phone built for speed, airflow, and a striking design.</p>
+            <div class="meta-row">
+              <strong>₹ 94,999</strong>
+              <span>6.78" OLED</span>
+            </div>
+            <div class="controls">
+              <button type="button" class="qty-btn" data-action="decrease">-</button>
+              <span class="quantity" data-quantity>0</span>
+              <button type="button" class="qty-btn" data-action="increase">+</button>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const cards = document.querySelectorAll('.product-card');
+    const cartPill = document.getElementById('cart-pill');
+
+    const formatMoney = (amount) => new Intl.NumberFormat('en-IN').format(amount);
+
+    const updateCart = () => {
+      const total = Array.from(cards).reduce((sum, card) => {
+        const quantity = Number(card.querySelector('[data-quantity]').textContent);
+        const price = Number(card.dataset.price);
+        return sum + quantity * price;
+      }, 0);
+
+      cartPill.textContent = `Cart total: ₹ ${formatMoney(total)}`;
+    };
+
+    cards.forEach((card) => {
+      const quantityNode = card.querySelector('[data-quantity]');
+      card.querySelectorAll('.qty-btn').forEach((button) => {
+        button.addEventListener('click', () => {
+          const current = Number(quantityNode.textContent);
+          const next = button.dataset.action === 'increase' ? current + 1 : Math.max(0, current - 1);
+          quantityNode.textContent = String(next);
+          updateCart();
+        });
+      });
+    });
+
+    updateCart();
+  </script>
+</body>
+</html>
